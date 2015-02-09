@@ -1,24 +1,22 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  8 FEB 2015 20:13
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.16)  8 FEB 2015 20:40
 entering extended mode
-**C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/ProposalTex/P
-rojectProposal.tex
+**C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/ProposalTex/ProjectPropo
+sal.tex
 
-(C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/ProposalTex/Pr
-ojectProposal.tex
+(C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/ProposalTex/ProjectPropos
+al.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
-
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\ie
-ee.cls
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\ieee.cls
 Document Class: ieee 2002/04/16 LaTeX2e class file `ieee' v1.0 for IEEE Confere
 nce Proceedings
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -38,10 +36,10 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\ie
-ee.clo
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\ieee.clo
 File: ieee.clo 2002/04/16 v1.0 IEEE Document Class Options
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count87
 \float@exts=\toks14
@@ -49,8 +47,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks15
 \@floatcapt=\box27
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\fl
-oatsty.sty
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\floatsty.sty
 Package: floatsty 2002/04/15 v0.1 Float styles (GNP)
 \@fs@ieee@ctmp=\skip43
 \@fs@ieee@figindent=\skip44
@@ -92,8 +89,8 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\Pr
-ojectProposal.aux)
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\ProjectPropos
+al.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
@@ -110,7 +107,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 24.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Bonnie\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
 \scratchdimen=\dimen105
@@ -145,7 +142,7 @@ Underfull \hbox (badness 6461) in paragraph at lines 42--43
 []\OT1/ptm/m/n/10 Universal Se-rial Bus (USB) tech-nol-ogy has be-
  []
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+[1{C:/Users/Bonnie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
@@ -169,16 +166,11 @@ File: Pictures/captcha.jpg Graphic file (type jpg)
 <use Pictures/captcha.jpg>
 Package pdftex.def Info: Pictures/captcha.jpg used on input line 83.
 (pdftex.def)             Requested size: 108.40472pt x 45.92145pt.
- [2 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/ProposalTe
-x/Pictures/Teensy.jpg> <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825
-/Project/ProposalTex/Pictures/captcha.jpg>]
-Underfull \hbox (badness 1721) in paragraph at lines 125--126
-[]\OT1/ptm/m/n/10 All team mem-bers were re-spon-si-ble for fi-nal read
- []
-
-
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\Pr
-ojectProposal.bbl [3]
+ [2 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/ProposalTex/Pictures/
+Teensy.jpg> <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/ProposalTex/P
+ictures/captcha.jpg>]
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\ProjectPropos
+al.bbl [3]
 Underfull \hbox (badness 10000) in paragraph at lines 32--36
 []\OT1/ptm/m/n/9 Wikipedia.  Tur-ing test.
  []
@@ -191,23 +183,22 @@ Underfull \hbox (badness 4217) in paragraph at lines 32--36
 ) [4
 
 ]
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\ProposalTex\Pr
-ojectProposal.aux) ) 
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\ProposalTex\ProjectPropos
+al.aux) ) 
 Here is how much of TeX's memory you used:
- 1376 strings out of 493921
- 19162 string characters out of 3147276
- 75698 words of memory out of 3000000
- 4671 multiletter control sequences out of 15000+200000
+ 1376 strings out of 494045
+ 19042 string characters out of 3148384
+ 75552 words of memory out of 3000000
+ 4670 multiletter control sequences out of 15000+200000
  18813 words of font info for 39 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 29i,7n,21p,1287b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.en
-c}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utm
-ri8a.pfb>
-Output written on ProjectProposal.pdf (4 pages, 112931 bytes).
+ 715 hyphenation exceptions out of 8191
+ 29i,7n,21p,1276b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
+es/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ProjectProposal.pdf (4 pages, 113033 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
