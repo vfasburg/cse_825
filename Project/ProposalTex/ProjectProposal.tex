@@ -75,7 +75,7 @@ For the first part of the project, the team will program a Teensy microcontrolle
 
 This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, ``rm -rf *'' which recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
 
-For the second part of the project, the team will work on preventing the attacks that were created in the first part by developing Linux drivers to authenticate the USB device before any attached keyboard or mouse is allowed to be used normally. Some preliminary ideas include using a series of Turing tests to determine if the input device is being used by a computer or a human. Essentially a Turing test is a test of a machine's ability to exhibit human behavior indistinguishable of that of a human \cite{wiki}.
+For the second part of the project, the team will work on preventing the attacks that were created in the first part by developing Linux drivers to authenticate the USB device before any attached keyboard or mouse is allowed to be used normally. Some preliminary ideas include using a series of Turing tests to determine if the input device is being used by a computer or a human. Essentially, a Turing test is a test of a machine's ability to exhibit human behavior indistinguishable of that of a human \cite{wiki}.
 
 To test a keyboard device, a random text captcha, as shown in  Figure~\ref{fig:Captcha}, could be used. The program installed on the Teensy will not know what the random captcha text is going to be, so a human user is required to type in the letters by hand before the keyboard is allowed to be used. In addition, a mouse could be verified by requiring a user to follow a randomly generated pattern on the screen or point and click to something in a random location on the screen to verify that a human is the one sending the commands as a mouse. If any of these tests fail, no other input is allowed from the device until the captcha or pattern is complete.
 
@@ -118,6 +118,8 @@ All team members contributed equally to the research of possible ideas for the p
 \item Problem Definition - Bonnie Reiff
 \item Approach - Josh Thomas
 \item Previous Work - Vince Fasburg
+\item LaTeX - Josh Thomas and Bonnie Reiff
+\item Setup github Repository - Vince Fasburg
 \end{enumerate}
 
 All team members were responsible for final read through and editing of the document.
