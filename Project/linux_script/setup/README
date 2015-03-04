@@ -1,0 +1,5 @@
+Put the 11-local.rules file in /etc/udev/rules.d/. Change the "vince" to your user name.
+put usb_add.sh file in /home/<user_name>/bin. Or whereever you want, you just have to change the path in 11-local.rules.
+put Xmodmap_orig and Xmodmap_restricted wherever you want, but change usb_add.sh to point the _restricted one.
+
+When you insert a usb device (any USB device right now), all of your modifier keys (ctrl, alt, etc) and some others should not work. To restore functionality, run the following command in a terminal (w/o quotes): "xmodmap /path/to/your/Xmodmap_orig"

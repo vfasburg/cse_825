@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="*", ATTR{idProduct}=="*", OWNER="vince", RUN+="/home/vince/bin/usb_add.sh"
+#ACTION=="add", SUBSYSTEM=="usb", DRIVERS=="*hid*", RUN+="/usr/local/bin/usb_add.sh"
