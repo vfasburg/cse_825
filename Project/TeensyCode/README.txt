@@ -1,0 +1,2 @@
+to compile & program the Teensy:
+I discovered that once you have everything set up properly, all you need to do is execute your arduino program. You can then open a .ino file from the TeensyCode library (here). Press the "verify" (checkbox) button on the arduino app, and the TeensyLoader should automatically pop up.  Then just insert the teensy and immediately press the button on the teensy and the program will load. 
