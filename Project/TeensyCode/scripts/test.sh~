@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo deluser Guest
+fprintf(STDIN, "vince\n")
