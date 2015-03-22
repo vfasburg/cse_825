@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{barbhuiya}
+F.~{Barbhuiya}, T.~{Saikia}, and S.~{Nandi}.
+\newblock An anomaly based approach for hid attack detection using keystroke
+  dynamics.
+\newblock In Proceedings of the 4th International Conference on Cyberspace
+  Safety and Security, 2012.
+
+\bibitem{samy}
+S.~Kamkar.
+\newblock Usbdriveby.
+\newblock http://samy.pl/usbdriveby/.
+
+\bibitem{nohl}
+K.~{Nohl} and J.~{Lell}.
+\newblock Badusb - on accessories that turn evil.
+\newblock Presented at Black Hat, Las Vegas, August 2014.
+
+\bibitem{shahzad}
+M.~{Shahzad}.
+\newblock Gesture and typing-based behavioral authentication.
+\newblock Presented to CSE-825, February 2015.
+
+\bibitem{wang}
+Z.~{Wang} and A.~{Stavrou}.
+\newblock Attestation \& authentication for usb communications.
+\newblock In Proceedings of the IEEE Sixth International Conference on Software
+  Security and Reliability Companion, 2012.
+
+\bibitem{wiki}
+Wikipedia.
+\newblock Turing test.
+\newblock http://en.wikipedia.org/wiki/Turing\_test.
+\newblock (Date accessed 07-FEB-2015).
+
+\end{thebibliography}
