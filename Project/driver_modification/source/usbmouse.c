@@ -72,9 +72,11 @@ static void usb_mouse_irq(struct urb *urb)
 	struct input_dev *dev = mouse->dev;
 	int status;
 
-	char *argv[] = { "/usr/bin/logger", "usb_mouse_irq function!" ,NULL };
+	/*	
+	char *argv[] = { "/usr/bin/logger", "usb_mouse_irq function!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
 	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );	
+	*/
 
 	switch (urb->status) {
 	case 0:			/* success */
@@ -112,9 +114,11 @@ static int usb_mouse_open(struct input_dev *dev)
 {
 	struct usb_mouse *mouse = input_get_drvdata(dev);
 
-	char *argv[] = { "/usr/bin/logger", "usb_mouse_open function!" ,NULL };
+	/*	
+	char *argv[] = { "/usr/bin/logger", "usb_mouse_open function!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );		
+	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );
+	*/		
 
 	mouse->irq->dev = mouse->usbdev;
 	if (usb_submit_urb(mouse->irq, GFP_KERNEL))
@@ -127,9 +131,11 @@ static void usb_mouse_close(struct input_dev *dev)
 {
 	struct usb_mouse *mouse = input_get_drvdata(dev);
 
-	char *argv[] = { "/usr/bin/logger", "usb_mouse_close function!" ,NULL };
+	/*	
+	char *argv[] = { "/usr/bin/logger", "usb_mouse_close function!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );	
+	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );
+	*/	
 
 	usb_kill_urb(mouse->irq);
 }
@@ -144,9 +150,11 @@ static int usb_mouse_probe(struct usb_interface *intf, const struct usb_device_i
 	int pipe, maxp;
 	int error = -ENOMEM;
 
-	char *argv[] = { "/usr/bin/logger", "usb_mouse_probe function!" ,NULL };
+	/*	
+	char *argv[] = { "/usr/bin/logger", "usb_mouse_probe function!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );	
+	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );
+	*/	
 
 	interface = intf->cur_altsetting;
 
@@ -239,9 +247,11 @@ static void usb_mouse_disconnect(struct usb_interface *intf)
 {
 	struct usb_mouse *mouse = usb_get_intfdata (intf);
 	
-	char *argv[] = { "/usr/bin/logger", "usb_mouse_disconnect function!" ,NULL };
+	/*	
+	char *argv[] = { "/usr/bin/logger", "usb_mouse_disconnect function!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_EXEC );	
+	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_EXEC );
+	*/	
 
 	usb_set_intfdata(intf, NULL);
 	if (mouse) {
