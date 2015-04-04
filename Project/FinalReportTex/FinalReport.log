@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  4 APR 2015 10:34
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  4 APR 2015 13:30
 entering extended mode
 **FinalReport.tex
 
@@ -144,6 +144,11 @@ Underfull \hbox (badness 6461) in paragraph at lines 41--42
 []\OT1/ptm/m/n/10 Universal Se-rial Bus (USB) tech-nol-ogy has be-
  []
 
+
+Underfull \hbox (badness 1694) in paragraph at lines 41--42
+\OT1/ptm/m/n/10 quires an in-di-vid-ual de-vice driver in or-der to en-able
+ []
+
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
@@ -153,7 +158,7 @@ File: Pictures/Teensy.jpg Graphic file (type jpg)
 
 <use Pictures/Teensy.jpg>
 Package pdftex.def Info: Pictures/Teensy.jpg used on input line 91.
-(pdftex.def)             Requested size: 224.33757pt x 109.91034pt.
+(pdftex.def)             Requested size: 237.13594pt x 116.18436pt.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 92.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
@@ -161,23 +166,23 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 92.
-
-<Pictures/captcha.jpg, id=13, 108.405pt x 45.92157pt>
-File: Pictures/captcha.jpg Graphic file (type jpg)
-
-<use Pictures/captcha.jpg>
-Package pdftex.def Info: Pictures/captcha.jpg used on input line 103.
-(pdftex.def)             Requested size: 108.40472pt x 45.92145pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<Pictures/JavaGUI.png, id=13, 451.6875pt x 529.98pt>
+File: Pictures/JavaGUI.png Graphic file (type png)
+
+<use Pictures/JavaGUI.png>
+Package pdftex.def Info: Pictures/JavaGUI.png used on input line 123.
+(pdftex.def)             Requested size: 237.13594pt x 278.24365pt.
+
+Underfull \vbox (badness 7397) has occurred while \output is active []
 
  [3 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
-tTex/Pictures/Teensy.jpg> <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_
-825/Project/FinalReportTex/Pictures/captcha.jpg>]
+tTex/Pictures/Teensy.jpg>]
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.bbl
+\FinalReport.bbl [4 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Pr
+oject/FinalReportTex/Pictures/JavaGUI.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 32--36
 []\OT1/ptm/m/n/9 Wikipedia.  Tur-ing test.
  []
@@ -187,28 +192,31 @@ Underfull \hbox (badness 4217) in paragraph at lines 32--36
 \OT1/ptm/m/n/9 http://en.wikipedia.org/wiki/Turing[]test.  (Date ac-cessed
  []
 
-) [4
+) [5
 
 ]
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.aux) ) 
+\FinalReport.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 1380 strings out of 493921
- 19217 string characters out of 3147276
- 74726 words of memory out of 3000000
- 4674 multiletter control sequences out of 15000+200000
+ 1381 strings out of 493921
+ 19230 string characters out of 3147276
+ 74734 words of memory out of 3000000
+ 4675 multiletter control sequences out of 15000+200000
  20946 words of font info for 42 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,7n,21p,1207b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc
-}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
-i8a.pfb>
-Output written on FinalReport.pdf (4 pages, 115182 bytes).
+ 29i,7n,21p,1209b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
+8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FinalReport.pdf (5 pages, 133926 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
