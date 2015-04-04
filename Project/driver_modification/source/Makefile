@@ -1,5 +1,9 @@
 #
-# Makefile for the USB input drivers
+# Makefile for the USB Human Input Device (HID) drivers
+# File originally found at: https://www.kernel.org/
+#
+# Modified by Vince Fasburg, Bonnie Reiff, and Josh Thomas
+# for Michigan State University, CSE 825
 #
 
 # Set up the KVERSION variable for the make targets
@@ -19,11 +23,6 @@ endif
 obj-$(CONFIG_USB_HID)		+= usbhid.o
 obj-$(CONFIG_USB_KBD)		+= usbkbd.o
 obj-$(CONFIG_USB_MOUSE)		+= usbmouse.o
-
-# EXTRA_CFLAGS are used to specify include directories
-EXTRA_CFLAGS := -I/home/bonnie/Documents/linux_source/linux-3.19/include/
-EXTRA_CFLAGS += -I/usr/include/
-EXTRA_CFLAGS += -I/usr/include/x86_64-linux-gnu/
 
 all:
 	make -C /lib/modules/$(KVERSION)/build M=$(PWD) modules

@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Created by Vince Fasburg, Bonnie Reiff, and Josh Thomas
+# for Michigan State University, CSE 825
+
 # Script setup code
 xhost local:bonnie
 export DISPLAY=:0.0

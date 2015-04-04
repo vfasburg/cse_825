@@ -6,6 +6,9 @@
  *  Copyright (c) 2005 Michael Haboustak <mike-@cinci.rr.com> for Concept2, Inc
  *  Copyright (c) 2007-2008 Oliver Neukum
  *  Copyright (c) 2006-2010 Jiri Kosina
+ *
+ *  Modified by Vince Fasburg, Bonnie Reiff, and Josh Thomas
+ *  for Michigan State University, CSE 825 
  */
 
 /*
@@ -19,11 +22,9 @@
 #include <linux/slab.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
-#include <linux/kthread.h>
 #include <linux/list.h>
 #include <linux/mm.h>
 #include <linux/mutex.h>
-#include <linux/sched.h>
 #include <linux/spinlock.h>
 #include <asm/unaligned.h>
 #include <asm/byteorder.h>
@@ -79,12 +80,6 @@ static inline int hid_report_len(struct hid_report *report)
 	/* equivalent to DIV_ROUND_UP(report->size, 8) + !!(report->id > 0) */
 	return ((report->size - 1) >> 3) + 1 + (report->id > 0);
 }
-
-/*
- * kthread variables.
- */
-struct task_struct *captcha_task;
-
 
 /*
  * Module parameters.
@@ -715,59 +710,19 @@ static int hid_get_class_descriptor(struct usb_device *dev, int ifnum,
 	return result;
 }
 
-int captcha_thread( void *data )
-{
-	int call_return;	
-	char *argv_logger_success[] = { "/usr/bin/logger", "captcha_thread - JAR file success!", NULL };	
-	char *argv_logger_failure[] = { "/usr/bin/logger", "captcha_thread - JAR file fail!", NULL };	
-	char *argv_java[] = { "/usr/bin/java", "-jar", "/home/bonnie/Documents/cse_825/Project/driver_modification/HelloWorld.jar", NULL };
-	// char *argv_shell[] = { "/bin/bash", "-c", "/home/bonnie/Documents/cse_825/Project/driver_modification/usb_mouse_test.sh", NULL };
-	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	
-	call_return = call_usermodehelper( argv_java[0], argv_java, envp, UMH_WAIT_PROC );
-	// call_return = call_usermodehelper( argv_shell[0], argv_shell, envp, UMH_WAIT_PROC );
-	if ( 0 == call_return )
-	{
-		call_usermodehelper( argv_logger_success[0], argv_logger_success, envp, UMH_WAIT_EXEC );	
-	}
-	else
-	{
-		call_usermodehelper( argv_logger_failure[0], argv_logger_failure, envp, UMH_WAIT_EXEC );
-	}
-	
-	do_exit(1);
-}
-
 int usbhid_open(struct hid_device *hid)
 {
 	struct usbhid_device *usbhid = hid->driver_data;
 	int res = 0;
-	// char thread_name[] = "captcha_thread";  
 
-	char *argv_logger_start[] = { "/usr/bin/logger", "usbhid_open function - new code start!", NULL };
-	char *argv_logger_stop[] = { "/usr/bin/logger", "usbhid_open function - new code stop!", NULL };		
-	// char *argv_shell_test[] = { "/bin/bash", "-c", "/home/bonnie/Documents/cse_825/Project/driver_modification/usb_mouse_test.sh", NULL };
-	char *argv_shell_usb[] = { "/bin/bash", "-c", "/usr/local/bin/usb_add.sh", NULL };
+	// Setup for the programs and environment needed for the call_usermodhelper function	
+	char *argv_logger[] = { "/usr/bin/logger", "usbhid_open function called!", NULL };
+	char *argv_shell_usbhid[] = { "/bin/bash", "-c", "/usr/local/bin/usb_add.sh", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
 	
-	call_usermodehelper( argv_logger_start[0], argv_logger_start, envp, UMH_WAIT_EXEC );
-	// call_usermodehelper( argv_shell_test[0], argv_shell_test, envp, UMH_WAIT_EXEC );
-	call_usermodehelper( argv_shell_usb[0], argv_shell_usb, envp, UMH_WAIT_EXEC );
-
-	// captcha_task = kthread_run( &captcha_thread, (void *) thread_name, "captcha" );
-
-	call_usermodehelper( argv_logger_stop[0], argv_logger_stop, envp, UMH_WAIT_EXEC );
-
-	// Begin Psuedocode //
-	/* 
-	 * Fork a new thread that does the following
-	 * {
-	 * 	retval = call_usermodehelper( java_code );
-	 *	if retval == 0 *Assuming that the call_usermodehelper call is blocking*
-	 *		unrestrict keyboard;
-	 * }
-	*/
-	// End Pseudocode //
+	// Log the use of the usbhid_open function and call the usbhid shell script	
+	call_usermodehelper( argv_logger[0], argv_logger, envp, UMH_WAIT_EXEC );
+	call_usermodehelper( argv_shell_usbhid[0], argv_shell_usbhid, envp, UMH_WAIT_EXEC );
 
 	mutex_lock(&hid_open_mut);
 	if (!hid->open++) {
@@ -812,8 +767,11 @@ void usbhid_close(struct hid_device *hid)
 {
 	struct usbhid_device *usbhid = hid->driver_data;
 
-	char *argv[] = { "/usr/bin/logger", "usbhid_close function!", NULL };
+	// Setup for the program and environment needed for the call_usermodhelper function		
+	char *argv[] = { "/usr/bin/logger", "usbhid_close function called!", NULL };
 	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
+
+	// Log the use of the usbhid_close function
 	call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );	
 
 	mutex_lock(&hid_open_mut);
@@ -1143,12 +1101,6 @@ static int usbhid_start(struct hid_device *hid)
 	struct usbhid_device *usbhid = hid->driver_data;
 	unsigned int n, insize = 0;
 	int ret;
-
-	/*	
-	char *argv_logger[] = { "/bin/bash", "/usr/bin/logger", "usbhid_start function!", NULL };
-	static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	call_usermodehelper( argv_logger[0], argv_logger, envp, UMH_WAIT_EXEC );
-	*/
 
 	clear_bit(HID_DISCONNECTED, &usbhid->iofl);
 
@@ -1729,14 +1681,6 @@ struct usb_interface *usbhid_find_interface(int minor)
 static int __init hid_init(void)
 {
 	int retval = -ENOMEM;
-
-	// char *argv[] = { "/usr/bin/logger", "hid_init function called from hid-core!" ,NULL };
-	// static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	// call_usermodehelper( argv[0], argv, envp, UMH_WAIT_PROC );
-
-	// char *argv[] = { "/bin/bash", "-c", "/home/bonnie/Documents/cse_825/Project/driver_modification/usb_mouse_test.sh", NULL };
-	// static char *envp[] = { "HOME=/", "TERM=linux", "PATH=/sbin:/bin:/usr/sbin:/usr/bin", NULL };
-	// call_usermodehelper( argv[0], argv, envp, UMH_WAIT_EXEC );	
 
 	retval = usbhid_quirks_init(quirks_param);
 	if (retval)
