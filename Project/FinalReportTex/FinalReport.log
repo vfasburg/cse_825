@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  22 MAR 2015 15:50
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  4 APR 2015 10:34
 entering extended mode
 **FinalReport.tex
 
@@ -93,19 +93,19 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 23.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -124,54 +124,58 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \everyMPtoPDFconversion=\toks20
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 37.
+(Font)              <12> on input line 35.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 37.
+(Font)              <8> on input line 35.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 37.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 37.
+(Font)              <6> on input line 35.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 35.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 41.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
 
-Underfull \hbox (badness 6461) in paragraph at lines 43--44
+Underfull \hbox (badness 6461) in paragraph at lines 41--42
 []\OT1/ptm/m/n/10 Universal Se-rial Bus (USB) tech-nol-ogy has be-
  []
 
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-<Pictures/Teensy.jpg, id=9, 224.33812pt x 109.91063pt>
+] [2]
+<Pictures/Teensy.jpg, id=12, 224.33812pt x 109.91063pt>
 File: Pictures/Teensy.jpg Graphic file (type jpg)
 
 <use Pictures/Teensy.jpg>
-Package pdftex.def Info: Pictures/Teensy.jpg used on input line 72.
+Package pdftex.def Info: Pictures/Teensy.jpg used on input line 91.
 (pdftex.def)             Requested size: 224.33757pt x 109.91034pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 73.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 92.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 73.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 92.
 
-<Pictures/captcha.jpg, id=10, 108.405pt x 45.92157pt>
+<Pictures/captcha.jpg, id=13, 108.405pt x 45.92157pt>
 File: Pictures/captcha.jpg Graphic file (type jpg)
 
 <use Pictures/captcha.jpg>
-Package pdftex.def Info: Pictures/captcha.jpg used on input line 84.
+Package pdftex.def Info: Pictures/captcha.jpg used on input line 103.
 (pdftex.def)             Requested size: 108.40472pt x 45.92145pt.
- [2 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 120.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
 tTex/Pictures/Teensy.jpg> <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_
 825/Project/FinalReportTex/Pictures/captcha.jpg>]
-[3]
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 32--36
@@ -189,11 +193,11 @@ Underfull \hbox (badness 4217) in paragraph at lines 32--36
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.aux) ) 
 Here is how much of TeX's memory you used:
- 1376 strings out of 493921
- 19159 string characters out of 3147276
+ 1380 strings out of 493921
+ 19217 string characters out of 3147276
  74726 words of memory out of 3000000
- 4671 multiletter control sequences out of 15000+200000
- 18813 words of font info for 39 fonts, out of 3000000 for 9000
+ 4674 multiletter control sequences out of 15000+200000
+ 20946 words of font info for 42 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  29i,7n,21p,1207b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc
@@ -202,7 +206,7 @@ gram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on FinalReport.pdf (4 pages, 113643 bytes).
+Output written on FinalReport.pdf (4 pages, 115182 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
