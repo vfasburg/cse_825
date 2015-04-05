@@ -1,23 +1,22 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  4 APR 2015 13:30
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.16)  5 APR 2015 02:08
 entering extended mode
-**FinalReport.tex
+**C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/FinalRepo
+rt.tex
 
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.tex
+(C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/FinalRepor
+t.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
-
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\ieee.cls
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\ieee.cls
 Document Class: ieee 2002/04/16 LaTeX2e class file `ieee' v1.0 for IEEE Confere
 nce Proceedings
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -37,10 +36,10 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\ieee.clo
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\ieee.clo
 File: ieee.clo 2002/04/16 v1.0 IEEE Document Class Options
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count87
 \float@exts=\toks14
@@ -48,8 +47,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks15
 \@floatcapt=\box27
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\floatsty.sty
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\floatsty.s
+ty
 Package: floatsty 2002/04/15 v0.1 Float styles (GNP)
 \@fs@ieee@ctmp=\skip43
 \@fs@ieee@figindent=\skip44
@@ -91,8 +90,8 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.aux)
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
@@ -109,7 +108,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 23.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Bonnie\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
 \scratchdimen=\dimen105
@@ -149,7 +148,7 @@ Underfull \hbox (badness 1694) in paragraph at lines 41--42
 \OT1/ptm/m/n/10 quires an in-di-vid-ual de-vice driver in or-der to en-able
  []
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+[1{C:/Users/Bonnie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ] [2]
@@ -178,11 +177,28 @@ Package pdftex.def Info: Pictures/JavaGUI.png used on input line 123.
 
 Underfull \vbox (badness 7397) has occurred while \output is active []
 
- [3 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
-tTex/Pictures/Teensy.jpg>]
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.bbl [4 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Pr
-oject/FinalReportTex/Pictures/JavaGUI.png>]
+ [3 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/Pictur
+es/Teensy.jpg>]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 173.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 173.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 174.
+
+Overfull \hbox (34.20114pt too wide) in paragraph at lines 173--183
+ [] 
+ []
+
+
+Underfull \hbox (badness 1721) in paragraph at lines 196--197
+[]\OT1/ptm/m/n/10 All team mem-bers were re-spon-si-ble for fi-nal read
+ []
+
+
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.bbl [4 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/P
+ictures/JavaGUI.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 32--36
 []\OT1/ptm/m/n/9 Wikipedia.  Tur-ing test.
  []
@@ -195,26 +211,22 @@ Underfull \hbox (badness 4217) in paragraph at lines 32--36
 ) [5
 
 ]
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.aux) ) 
 Here is how much of TeX's memory you used:
- 1381 strings out of 493921
- 19230 string characters out of 3147276
- 74734 words of memory out of 3000000
- 4675 multiletter control sequences out of 15000+200000
- 20946 words of font info for 42 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 29i,7n,21p,1209b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr
-8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FinalReport.pdf (5 pages, 133926 bytes).
+ 1385 strings out of 494045
+ 19160 string characters out of 3148384
+ 74580 words of memory out of 3000000
+ 4677 multiletter control sequences out of 15000+200000
+ 22572 words of font info for 44 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 29i,7n,21p,1277b,286s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
+s/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FinalReport.pdf (5 pages, 134511 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
