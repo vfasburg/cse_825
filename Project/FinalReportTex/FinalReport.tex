@@ -125,11 +125,11 @@ In order for the user to validate the USB device, a Graphical User Interface (GU
 	\label{fig:JavaGUI}
 \end{figure}
 
-The captcha was generated with a random sequence of 6 alphanumeric characters in both upper and lower case. The user can generate a new captcha with the ``Get New Captcha'' button in the event one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
+The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The user can generate a new captcha with the ``Get New Captcha'' button in the event one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
 
 The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with some kind of computer vision. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
 
-There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate Button''.
+There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate'' button.
 
 The second method would be used if a mouse needed to be validated. The user would use the virtual keyboard on the GUI to type the captcha into the textbox. As another security feature, clicking of the mouse has been disabled. The user would activate the keys by briefly hovering over each key that is needed. When finished, the user can also briefly hover over the ``Validate'' button.
 
@@ -139,6 +139,50 @@ If the captcha is incorrect, an error message would appear along with a new capt
 
 \subsection{Kernel}
 
+The driver modification development for this paper occurred on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred within the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website %\cite{kernel}%
+, version 3.19.3. 
+
+The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project (usbhid, usbmouse, and usbkbd) were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code.
+
+\subsubsection{Makefile Modification}
+
+In order to get the driver source code in the usbhid directory to compile initially after download, several modifications had to be made. First, Makefile targets ``all'' and ``clean'' were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. For any files in the directory that were still producing errors due to unrecognized information from the linux header files, the appropriate code was copied and pasted locally to eliminate compilation errors.
+
+\subsubsection{\texttt{call\_usermodehelper} Function}
+
+The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} functions combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters:
+\begin{itemize}
+\item \textit{char *path}, the path to the program to be executed
+\item \textit{char **argv}, the null terminated list of program arguments, including the name of the program at zeroth index
+\item \textit{char **envp}, the null terminated list containing environment information 
+\item \textit{int wait}, \texttt{UMH\_WAIT\_EXEC} to wait for the user space application to be invoked before continuing, \texttt{UMH\_WAIT\_PROC} to wait for the entire process (including the application running in user space) to complete, or \texttt{UMH\_NO\_WAIT} to include no wait time
+\end{itemize}
+%\cite{ibm}%
+
+The newly implemented usage of this function in the usbhid driver is shown in Figure~\ref{fig:usermodehelper_code}.
+
+\begin{figure}[H]
+   \center{\includegraphics[width=1\linewidth]{Pictures/usermodehelper_code}}
+   \caption{\texttt{call\_usermodehelper} additions to the \texttt{usbhid\_open} function}
+   \label{fig:usermodehelper_code}
+\end{figure}
+
+The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged upon insertion and removal of a USB-HID device was searched within the \texttt{usbhid} directory to determine a subset of files and functions to modify. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash the \texttt{usbhid\_open} function in hid-core.c.
+
+TODO: discussion of system logging and calling the bash script using the function
+
+\subsubsection{Installation of Modules}
+
+When the kernel source files are compiled, they produce both regular C object files (.o) and loadable kernel module files (.ko). The following steps then need to be taken to install the new versions of the modules. Note that these steps were scripted as part of the project in order to allow for faster installation and test of changes:
+
+\begin{enumerate}
+\item Uninstall the old versions of the module at \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid} using the \texttt{sudo rmmod usbhid.ko} command
+\item Copy the new module to \texttt{/lib/modules/\$(uname -r)/kernel/drivers/hid/usbhid}
+\item Insert the new module using the \texttt{sudo insmod usbhid.ko} command
+\end{enumerate} 
+
+To verify the insertion or removal of a module, the \texttt{lsmod} command can be used to show the status of the modules in the Linux kernel. This program also shows the size of each module (which is helpful for distinguishing between different versions), as well as what other modules are dependent on it.
+
 %------------------------------------------------------------------------- 
 
 \subsection{Bash Script}
@@ -146,6 +190,23 @@ If the captcha is incorrect, an error message would appear along with a new capt
 %------------------------------------------------------------------------- 
 
 \section{Experimental Results}
+
+After development of the modified driver was complete and installed on an Ubuntu system, the modified driver was tested against three types of devices: 
+
+\begin{itemize}
+\item \textit{USB Flash Drive.}
+
+This test was executed to ensure that the captcha program only appears for human interface devices as opposed to for all USB devices. The computer responded as expected \textemdash a File window showing the contents of the USB flash drive was opened and the captcha program did not run.
+
+\item \textit{USB Mouse and USB Keyboard}.
+
+This test was executed to ensure that the captcha program runs as expected for the devices on which this research focused.
+
+\item \textit{Teensy Programmable Microcontroller with attack loaded.}
+
+The Teensy was loaded with each of the attacks described above in the ``Teensy Attacks'' section of the paper and set to emulate both a USB mouse and USB keyboard. The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded.
+
+\end{itemize}
 
 %------------------------------------------------------------------------- 
 
@@ -157,7 +218,23 @@ If the captcha is incorrect, an error message would appear along with a new capt
 
 %------------------------------------------------------------------------- 
 
-\section{Future Work}
+\section{Conclusion \& Future Work}
+
+In this paper, we examined the following three aspects of USB-HID emulation attacks on an Ubuntu operating system:
+
+\begin{itemize}
+\item The extent of attacks the can be performed using USB-HID emulation with a programmable microcontroller
+\item The existing defenses against USB-HID emulation attacks
+\item New possibilities for USB-HID driver design to defend against HID emulation attacks
+\end{itemize}
+
+The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to stop the Teensy-based attacks while still allowing normal use of USB input devices such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
+
+As this was a proof of concept, in addition to fixing the technical weaknesses explained in the previous section, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in the ``Java GUI'' section of the paper, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words %\cite{captcha}.
+
+The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
+
+Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python in order to call the program from the C code \textemdash the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap'' mapping files used currently are analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c), which can be changed using the \texttt{input\_report\_key} function. Similarly, the ability to use various buttons on the mouse can be restricted or unrestricted by using the \texttt{input\_report\_key} and \texttt{input\_report\_rel} functions, as seen in the \texttt{usb\_mouse\_irq} function in the usbmouse.c file.
 
 %------------------------------------------------------------------------- 
 
