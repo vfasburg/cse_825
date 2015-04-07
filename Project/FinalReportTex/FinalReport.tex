@@ -117,7 +117,7 @@ For equipment needed, the entire team will be installing the Ubuntu Linux operat
 
 \subsection{Java GUI}
 
-In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing library as shown in Figure~\ref{fig:JavaGUI}.
+In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing \cite{kim} library as shown in Figure~\ref{fig:JavaGUI}.
 
 \begin{figure}[H]
 	\center{\includegraphics[width=1\linewidth]{Pictures/JavaGUI}}
@@ -131,7 +131,7 @@ The GUI has been designed to always stay on top of other windows as well as alwa
 
 There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate'' button.
 
-The second method would be used if a mouse needed to be validated. The user would use the virtual keyboard on the GUI to type the captcha into the textbox. As another security feature, clicking of the mouse has been disabled. The user would activate the keys by briefly hovering over each key that is needed. When finished, the user can also briefly hover over the ``Validate'' button.
+The second method would be used if a mouse needed to be validated. The user would use the virtual keyboard on the GUI to type the captcha into the textbox. As another security feature, clicking of the mouse has been disabled. The user would activate the keys by briefly hovering \cite{hover} over each key that is needed. When finished, the user can also briefly hover over the ``Validate'' button.
 
 If the captcha is incorrect, an error message would appear along with a new captcha to attempt. With a correct captcha, the GUI is closed and the user gains full access of both the keyboard and mouse.
 
