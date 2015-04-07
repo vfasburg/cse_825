@@ -139,7 +139,7 @@ If the captcha is incorrect, an error message would appear along with a new capt
 
 \subsection{Kernel}
 
-The driver modification development for this paper occurred on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred within the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website %\cite{kernel}%
+The driver modification development for this paper occurred on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred within the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}
 , version 3.19.3. 
 
 The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project (usbhid, usbmouse, and usbkbd) were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code.
@@ -150,14 +150,13 @@ In order to get the driver source code in the usbhid directory to compile initia
 
 \subsubsection{\texttt{call\_usermodehelper} Function}
 
-The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} functions combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters:
+The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} functions combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters \cite{ibm}:
 \begin{itemize}
 \item \textit{char *path}, the path to the program to be executed
 \item \textit{char **argv}, the null terminated list of program arguments, including the name of the program at zeroth index
 \item \textit{char **envp}, the null terminated list containing environment information 
 \item \textit{int wait}, \texttt{UMH\_WAIT\_EXEC} to wait for the user space application to be invoked before continuing, \texttt{UMH\_WAIT\_PROC} to wait for the entire process (including the application running in user space) to complete, or \texttt{UMH\_NO\_WAIT} to include no wait time
 \end{itemize}
-%\cite{ibm}%
 
 The newly implemented usage of this function in the usbhid driver is shown in Figure~\ref{fig:usermodehelper_code}.
 
@@ -210,8 +209,14 @@ The Teensy was loaded with each of the attacks described above in the ``Teensy A
 
 %------------------------------------------------------------------------- 
 
-\section{Usability}
+\section{Usability Testing}
 
+Usability testing is used in products that have a user-centered interaction in order to evaluate it by testing on outside users. As a part of the overall testing of the USB verification software, we had individuals who were not part of the development team use the software to see their overall impression of the design. The following summarizes  the outcomes of the study:
+\begin{enumerate}
+\item Users did not completely understand the idea behind hovering over the buttons to activate them. We found that some users would try to click, and then ended up hovering too long which allowed multiple letters to appear. In future versions of the Java GUI, we could reevaluate the usefulness of the hovering feature. Since the GUI does also keep its own focus and stays on top of other windows, disabling the clicking may not be required. 
+\item A few individuals mentioned that the letters on the keyboard were a bit too small. If someone had bad eye sight, it would be even more difficult to see. The size of the text for the buttons should be enlarged so that it is easier to read. In addition, by enlarging the text on the keys, the keys would become larger as well. This could help users type on the keyboard more easily by making bigger targets to guide the mouse to.
+\item Lastly, there were comments made on the length of the directions on the page. Most people probably do not want to take the time to read all the through them and may begin completing the captcha before having finished reading. This could lead to the captcha being completed incorrectly or using the wrong method (mouse verification vs keyboard verification). If there is some way to summarize the directions and increase the size of the font to make the user more aware of what to do, that would be very helpful.
+\end{enumerate}
 %------------------------------------------------------------------------- 
 
 \section{Technical Weaknesses}
@@ -230,7 +235,7 @@ In this paper, we examined the following three aspects of USB-HID emulation atta
 
 The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to stop the Teensy-based attacks while still allowing normal use of USB input devices such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
 
-As this was a proof of concept, in addition to fixing the technical weaknesses explained in the previous section, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in the ``Java GUI'' section of the paper, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words %\cite{captcha}.
+As this was a proof of concept, in addition to fixing the technical weaknesses explained in the previous section, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in the ``Java GUI'' section of the paper, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
 
 The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
 

@@ -1,10 +1,23 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{ibm}
+Kernel apis, part 1: Invoking user-space applications from the kernel.
+\newblock http://www.ibm.com/developerworks/library/l-user-space-apps/, April
+  2015.
+
+\bibitem{kernel}
+The linux kernel archives.
+\newblock https://www.kernel.org/, April 2015.
 
 \bibitem{hover}
 Mouse over events with jbutton.
 \newblock
   http://stackoverflow.com/questions/15403909/mouse-over-events-with-jbutton,
   April 2015.
+
+\bibitem{captcha}
+Wikipedia - captcha.
+\newblock http://en.wikipedia.org/wiki/CAPTCHA, April 2015.
 
 \bibitem{barbhuiya}
 F.~{Barbhuiya}, T.~{Saikia}, and S.~{Nandi}.

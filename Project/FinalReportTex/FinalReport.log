@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  6 APR 2015 20:34
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  6 APR 2015 21:40
 entering extended mode
 **FinalReport.tex
 
@@ -309,109 +309,116 @@ File: Pictures/usermodehelper_code.png Graphic file (type png)
 
 <use Pictures/usermodehelper_code.png>
 Package pdftex.def Info: Pictures/usermodehelper_code.png used on input line 16
-5.
+4.
 (pdftex.def)             Requested size: 237.13594pt x 42.42438pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 []\OT1/ptm/m/n/10 Uninstall the old ver-sions of the mod-ule at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--180
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 \OT1/pcr/m/n/10 /lib/modules/$(uname -r)/kernel/
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 181--182
+Underfull \hbox (badness 1237) in paragraph at lines 180--181
 []\OT1/ptm/m/n/10 Insert the new mod-ule us-ing the \OT1/pcr/m/n/10 sudo insmod
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 []\OT1/ptm/m/it/10 Teensy Pro-grammable Mi-cro-con-troller with at-
  []
 
 [5 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalReport
 Tex/Pictures/usermodehelper_code.png>]
-Underfull \hbox (badness 1005) in paragraph at lines 237--238
+Underfull \hbox (badness 1005) in paragraph at lines 242--243
 \OT1/ptm/m/n/10 tions, struc-tures ex-ist in the code for the ``us-b-mouse''
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 237--238
+Underfull \hbox (badness 1092) in paragraph at lines 242--243
 \OT1/ptm/m/n/10 types (found in us-bkbd.c), which can be changed us-
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 237--238
+Underfull \hbox (badness 2285) in paragraph at lines 242--243
 \OT1/ptm/m/n/10 ing the \OT1/pcr/m/n/10 input[]report[]key \OT1/ptm/m/n/10 func
 -tion. Sim-i-larly, the
  []
 
 
-Underfull \hbox (badness 3954) in paragraph at lines 237--238
+Underfull \hbox (badness 3954) in paragraph at lines 242--243
 \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 input[]report[]rel \OT1/ptm/m/n/10 func-tio
 ns, as seen in the
  []
 
-
-Underfull \vbox (badness 1496) has occurred while \output is active []
-
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 250.
+(Font)              <7> on input line 255.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 250.
+(Font)              <5> on input line 255.
 
-Overfull \hbox (34.20114pt too wide) in paragraph at lines 250--260
+Overfull \hbox (34.20114pt too wide) in paragraph at lines 255--265
  [] 
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 273--274
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+Underfull \hbox (badness 1721) in paragraph at lines 278--279
 []\OT1/ptm/m/n/10 All team mem-bers were re-spon-si-ble for fi-nal read
  []
 
 
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 4--8
+Underfull \hbox (badness 10000) in paragraph at lines 13--17
 []\OT1/ptm/m/n/9 Mouse over events with jbut-ton.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--8
-\OT1/ptm/m/n/9 http://stackoverflow.com/questions/15403909/mouse-over-
+Underfull \hbox (badness 10000) in paragraph at lines 13--17
+\OT1/ptm/m/n/9 http://stackoverflow.com/questions/15403909/mouse-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--27
+Overfull \hbox (5.30861pt too wide) in paragraph at lines 19--21
+[]\OT1/ptm/m/n/9 Wikipedia - captcha.  http://en.wikipedia.org/wiki/CAPTCHA,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--40
 []\OT1/ptm/m/n/9 M. Kim.  Java swing tu-to-rial.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--27
+Underfull \hbox (badness 10000) in paragraph at lines 35--40
 \OT1/ptm/m/n/9 http://users.ece.utexas.edu/ miryung/teaching/EE379K-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--49
+Underfull \hbox (badness 10000) in paragraph at lines 58--62
 []\OT1/ptm/m/n/9 Wikipedia.  Tur-ing test.
  []
 
 
-Underfull \hbox (badness 4217) in paragraph at lines 45--49
+Underfull \hbox (badness 1946) in paragraph at lines 58--62
 \OT1/ptm/m/n/9 http://en.wikipedia.org/wiki/Turing[]test.  (Date ac-cessed
  []
 
-) [6]
+) [7
+
+]
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.aux) ) 
 Here is how much of TeX's memory you used:
- 1434 strings out of 493921
- 20051 string characters out of 3147276
- 76740 words of memory out of 3000000
- 4719 multiletter control sequences out of 15000+200000
+ 1437 strings out of 493921
+ 20073 string characters out of 3147276
+ 75751 words of memory out of 3000000
+ 4722 multiletter control sequences out of 15000+200000
  23602 words of font info for 48 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  29i,7n,21p,1209b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -422,9 +429,9 @@ eX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FinalReport.pdf (6 pages, 202313 bytes).
+Output written on FinalReport.pdf (7 pages, 204824 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
