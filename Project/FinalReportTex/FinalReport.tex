@@ -140,18 +140,26 @@ If the captcha is incorrect, an error message would appear along with a new capt
 
 \subsection{Kernel}
 
-The driver modification development for this paper occurred on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred within the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}
-, version 3.19.3. 
+The driver modification development for this paper was done on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred using the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}, version 3.19.3. 
 
-The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project (usbhid, usbmouse, and usbkbd) were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code.
+The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code and by subsquently using Linux system logging functionality while connecting and disconnecting a USB-HID device to test that the appropriate drivers were found (see the section below on the \texttt{call\_usermodehelper} function for more detail). Through this process, the ``usbhid", ``usbmouse", and ``usbkbd" drivers were discovered. For the scope of this project, only the usbhid driver needed to be modified, but the code for the usbmouse and usbkbd drivers is important to understand for possible future improvements to this defense against USB-HID emulation attacks.
 
 \subsubsection{Makefile Modification}
 
-In order to get the driver source code in the usbhid directory to compile initially after download, several modifications had to be made. First, Makefile targets ``all'' and ``clean'' were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. For any files in the directory that were still producing errors due to unrecognized information from the linux header files, the appropriate code was copied and pasted locally to eliminate compilation errors.
+In order to get the driver source code in the \texttt{drivers/hid/usbhid} directory to compile initially after download, several modifications had to be made. First, Makefile targets ``all'' and ``clean'' were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. 
+
+\textbf{TODO:} explain what these two targets do  
+\textbf{TODO:} explain that drivers compiled under one release version are not backwards compatible (need to install in the kernel release used for compilation, even if it is older or recompile)
+
+After adding the targets, for any files in the directory that were still producing errors due to unrecognized information from the linux header files when the \texttt{make} program was executed, the appropriate code was copied and pasted locally to eliminate compilation errors.
 
 \subsubsection{\texttt{call\_usermodehelper} Function}
 
+<<<<<<< HEAD
 The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} function combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters \cite{ibm}:
+=======
+Many common C header files do not exist in the kernel development environment and cannot be included in the kernel programs. Thus, the \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} functions combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters \cite{ibm}:
+>>>>>>> 32a6d24c5c2fe790af75286b6c252c2b61ce831d
 \begin{itemize}
 \item \textit{char *path}, the path to the program to be executed
 \item \textit{char **argv}, the null terminated list of program arguments, including the name of the program at zeroth index
@@ -167,17 +175,23 @@ The newly implemented usage of this function in the usbhid driver is shown in Fi
    \label{fig:usermodehelper_code}
 \end{figure}
 
+<<<<<<< HEAD
 The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged upon insertion and removal of a USB-HID device was searched within the \texttt{usbhid} directory to determine a subset of files and functions to modify. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash the \texttt{usbhid\_open} function in hid-core.c.
 %TODO%%%%%%%%
 TODO: discussion of system logging and calling the bash script using the function
+=======
+The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged by the unmodified driver(s) upon insertion and removal of a USB-HID device was searched within the \texttt{usbhid} directory to determine a subset of files and functions to modify. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash the \texttt{usbhid\_open} function in hid-core.c, located in the \texttt{drivers/hid/usbhid} directory.
+
+\textbf{TODO:} discussion of system logging and calling the bash script using the function (important parameters, i.e. the wait time, the programs)
+>>>>>>> 32a6d24c5c2fe790af75286b6c252c2b61ce831d
 
 \subsubsection{Installation of Modules}
 
-When the kernel source files are compiled, they produce both regular C object files (.o) and loadable kernel module files (.ko). The following steps then need to be taken to install the new versions of the modules. Note that these steps were scripted as part of the project in order to allow for faster installation and test of changes:
+When the kernel source files are compiled in local user space, they produce both regular C object files (.o) and loadable kernel module files (.ko). The following steps then need to be taken to install the new versions of the modules. These steps were scripted as part of the project in order to allow for faster installation and test of changes:
 
 \begin{enumerate}
-\item Uninstall the old versions of the module at \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid} using the \texttt{sudo rmmod usbhid.ko} command
-\item Copy the new module to \texttt{/lib/modules/\$(uname -r)/kernel/drivers/hid/usbhid}
+\item Uninstall the old version of the module at \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid} using the \texttt{sudo rmmod usbhid.ko} command
+\item Copy the new module from local user space to \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid}
 \item Insert the new module using the \texttt{sudo insmod usbhid.ko} command
 \end{enumerate} 
 
@@ -196,11 +210,11 @@ After development of the modified driver was complete and installed on an Ubuntu
 \begin{itemize}
 \item \textit{USB Flash Drive.}
 
-This test was executed to ensure that the captcha program only appears for human interface devices as opposed to for all USB devices. The computer responded as expected \textemdash a File window showing the contents of the USB flash drive was opened and the captcha program did not run.
+This test was executed to ensure that the captcha program only appears for human interface devices as opposed to for all USB devices. The computer responded as expected \textemdash \ a File window showing the contents of the USB flash drive was opened and the captcha program did not run.
 
 \item \textit{USB Mouse and USB Keyboard}.
 
-This test was executed to ensure that the captcha program runs as expected for the devices on which this research focused.
+These tests were executed to ensure that the captcha program runs as expected for the devices on which this research focused. More details on the results of these tests, as well as how users responded to the captcha program, can be found in the following section (``Usability Testing").
 
 \item \textit{Teensy Programmable Microcontroller with attack loaded.}
 
@@ -215,8 +229,8 @@ The Teensy was loaded with each of the attacks described in Section~\ref{section
 Usability testing is used in products that have a user-centered interaction in order to evaluate it by testing on outside users. As a part of the overall testing of the USB verification software, we had individuals who were not part of the development team use the software to see their overall impression of the design. The following summarizes  the outcomes of the study:
 \begin{enumerate}
 \item Users did not completely understand the idea behind hovering over the buttons to activate them. We found that some users would try to click, and then ended up hovering too long which allowed multiple letters to appear. In future versions of the Java GUI, we could reevaluate the usefulness of the hovering feature. Since the GUI does also keep its own focus and stays on top of other windows, disabling the clicking may not be required. 
-\item A few individuals mentioned that the letters on the keyboard were a bit too small. If someone had bad eye sight, it would be even more difficult to see. The size of the text for the buttons should be enlarged so that it is easier to read. In addition, by enlarging the text on the keys, the keys would become larger as well. This could help users type on the keyboard more easily by making bigger targets to guide the mouse to.
-\item Lastly, there were comments made on the length of the directions on the page. Most people probably do not want to take the time to read all the through them and may begin completing the captcha before having finished reading. This could lead to the captcha being completed incorrectly or using the wrong method (mouse verification vs keyboard verification). If there is some way to summarize the directions and increase the size of the font to make the user more aware of what to do, that would be very helpful.
+\item A few individuals mentioned that the letters on the keyboard were a bit too small. If someone had bad eyesight, it would be even more difficult to see. The size of the text for the buttons should be enlarged so that it is easier to read. In addition, by enlarging the text on the keys, the keys would become larger as well. This could help users ``type" on the keyboard more easily by providing bigger targets to which the mouse can be guided.
+\item Lastly, there were comments made on the length of the directions on the page. Most people probably do not want to take the time to read all the through them and may begin completing the captcha before having finished reading. This could lead to the captcha being completed incorrectly or using the wrong method (mouse verification versus keyboard verification). If there is some way to summarize the directions and increase the size of the font to make the user more aware of what to do, that would be very helpful.
 \end{enumerate}
 %------------------------------------------------------------------------- 
 
@@ -235,13 +249,15 @@ In this paper, we examined the following three aspects of USB-HID emulation atta
 \item New possibilities for USB-HID driver design to defend against HID emulation attacks
 \end{itemize}
 
-The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to stop the Teensy-based attacks while still allowing normal use of USB input devices such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
+The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to stop the Teensy-based attacks while still allowing normal use of USB input devices, such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
 
 As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in Section~\ref{section:gui}, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
 
 The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
 
 Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python in order to call the program from the C code \textemdash the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap'' mapping files used currently are analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c), which can be changed using the \texttt{input\_report\_key} function. Similarly, the ability to use various buttons on the mouse can be restricted or unrestricted by using the \texttt{input\_report\_key} and \texttt{input\_report\_rel} functions, as seen in the \texttt{usb\_mouse\_irq} function in the usbmouse.c file.
+
+\textbf{TODO (Bonnie):}  better explanation of the input\_report\_key function (or explain without mentioning the function) and add a summarizing end to the paper
 
 %------------------------------------------------------------------------- 
 
