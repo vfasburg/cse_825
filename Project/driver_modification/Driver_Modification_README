@@ -26,6 +26,8 @@
 | hid-core.c		   | Added code to the usbhid_start function to call the usb_add shell script			| 
 			   | (and added unrecognized hid.h header information)						|
 -------------------------------------------------------------------------------------------------------------------------
+| hid-quirks.c             | Added unrecognized hid.h header information						|
+-------------------------------------------------------------------------------------------------------------------------
 
 (4) Execute the "make" command from the usbhid directory
 
