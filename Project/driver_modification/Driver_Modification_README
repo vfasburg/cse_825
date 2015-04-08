@@ -31,13 +31,16 @@
 
 (4) Execute the "make" command from the usbhid directory
 
-(5) From /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid, excute the following command: sudo rmmod usbhid.ko
-    Note: execute "echo $(uname -r)" in bash command line and then use the resulting value in the path specified above
+(5) Execute "echo $(uname -r)" in any bash command line and make note of the value for the steps below
+
+(6) From /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid, excute the following command: "lsmod | grep '^usbhid'"
+    If the command returns a result, then execute the command "sudo rmmod usbhid.ko" from the same directory, otherwise continue on to the next step.
+    Note: when the usbhid driver is uninstalled, all HID devices will cease to work
 
 (6) Copy the newly built usbhid.ko file to /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid
     Note: you can overwrite the usbhid.ko file currently located at that location, but the suggestion is to save the original ko file under a different name and then move this file to the specified directory
 
 (7) From /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid, excute the following command: sudo insmod usbhid.ko
 
-(8) To confirm module installation, you can execute "lsmod" and check that the usbhid Module has a size of 52672
+(8) When the module finishes installing, the captcha GUI should appear. To further confirm module installation, you can execute "lsmod | grep '^usbhid'", ensure that the command returns a result, and check that the usbhid Module has a size of 52672.
 
