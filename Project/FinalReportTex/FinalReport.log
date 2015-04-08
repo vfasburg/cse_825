@@ -1,23 +1,22 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  6 APR 2015 21:40
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.1.16)  7 APR 2015 21:08
 entering extended mode
-**FinalReport.tex
+**C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/FinalRepo
+rt.tex
 
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.tex
+(C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/FinalRepor
+t.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
 croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
-lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
-ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
- lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
-german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
-ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
-an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
-ishmax, welsh, loaded.
-
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\ieee.cls
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\ieee.cls
 Document Class: ieee 2002/04/16 LaTeX2e class file `ieee' v1.0 for IEEE Confere
 nce Proceedings
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -37,10 +36,10 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\ieee.clo
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\ieee.clo
 File: ieee.clo 2002/04/16 v1.0 IEEE Document Class Options
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count87
 \float@exts=\toks14
@@ -48,8 +47,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks15
 \@floatcapt=\box27
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\floatsty.sty
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\floatsty.s
+ty
 Package: floatsty 2002/04/15 v0.1 Float styles (GNP)
 \@fs@ieee@ctmp=\skip43
 \@fs@ieee@figindent=\skip44
@@ -91,8 +90,8 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.aux)
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
@@ -109,7 +108,7 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 23.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+(C:\Users\Bonnie\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
 \scratchdimen=\dimen105
@@ -149,7 +148,7 @@ Underfull \hbox (badness 1694) in paragraph at lines 41--42
 \OT1/ptm/m/n/10 quires an in-di-vid-ual de-vice driver in or-der to en-able
  []
 
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+[1{C:/Users/Bonnie/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ] [2]
@@ -178,203 +177,192 @@ Package pdftex.def Info: Pictures/JavaGUI.png used on input line 123.
 
 Underfull \vbox (badness 7397) has occurred while \output is active []
 
- [3 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
-tTex/Pictures/Teensy.jpg>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 145.
+ [3 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/Pictur
+es/Teensy.jpg>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 144.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (1.45319pt too wide) in paragraph at lines 145--146
+Overfull \hbox (1.45319pt too wide) in paragraph at lines 144--145
 \OT1/ptm/m/n/10 tirely within the \OT1/pcr/m/n/10 linux-3.19/drivers/hid/usbhid
 
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 145--146
+Underfull \hbox (badness 5862) in paragraph at lines 144--145
 \OT1/ptm/m/n/10 sub-di-rec-tory and made use of the header files at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-\OT1/pcr/m/n/10 linux-3.19/include/linux\OT1/ptm/m/n/10 . The ap-pro-pri-
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+\OT1/pcr/m/n/10 linux-3.19/include/linux\OT1/ptm/m/n/10 . The ap-pro-pri-ate
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 144--145
+\OT1/ptm/m/n/10 tion for more de-tail). Through this pro-cess, the ``us-b-
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 149.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 148.
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
- \OT1/ptm/b/n/10 5.3.1. Make-file Mod-i-fi-ca-tion[] \OT1/ptm/m/n/10 In or-der 
-to get the
+Underfull \hbox (badness 5388) in paragraph at lines 148--149
+\OT1/ptm/m/n/10 source code in the \OT1/pcr/m/n/10 drivers/hid/usbhid \OT1/ptm/
+m/n/10 di-rec-
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 149--150
-\OT1/ptm/m/n/10 driver source code in the us-b-hid di-rec-tory to com-
- []
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 149--150
-\OT1/ptm/m/n/10 to be made. First, Make-file tar-gets ``all'' and ``clean''
- []
-
-
-Underfull \hbox (badness 5908) in paragraph at lines 149--150
-\OT1/ptm/m/n/10 were added. The ``all'' tar-get is set to \OT1/pcr/m/n/10 make 
--C
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \OT1/pcr/m/n/10 lib/modules/$(KVERSION)/build M=$(PWD)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \OT1/pcr/m/n/10 modules\OT1/ptm/m/n/10 , where \OT1/pcr/m/n/10 KVERSION = $(she
 ll uname
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 148--149
 \OT1/pcr/m/n/10 /lib/modules/$(KVERSION)/build M=$(PWD)
  []
 
+[4 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/Picture
+s/JavaGUI.png>]
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 153.
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 157.
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
- \OT1/ptm/b/n/10 5.3.2. \OT1/pcr/b/n/10 call[]usermodehelper \OT1/ptm/b/n/10 Fu
-nc-tion[] \OT1/ptm/m/n/10 The
- []
-
-
-Underfull \hbox (badness 6825) in paragraph at lines 153--154
-\OT1/pcr/m/n/10 call[]usermodehelper \OT1/ptm/m/n/10 func-tion was es-sen-tial 
-to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-\OT1/ptm/m/n/10 tion-al-i-ties of the \OT1/pcr/m/n/10 call[]usermodehelper[]set
-up
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 \OT1/ptm/m/n/10 and the \OT1/pcr/m/n/10 call[]usermodehelper[]exec \OT1/ptm/m/n
 /10 func-tions,
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 153--154
+Underfull \hbox (badness 8075) in paragraph at lines 157--158
 \OT1/ptm/m/n/10 The \OT1/pcr/m/n/10 call[]usermodehelper[]setup \OT1/ptm/m/n/10
  func-tion pre-
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 153--154
+Underfull \hbox (badness 1655) in paragraph at lines 157--158
 \OT1/ptm/m/n/10 pares a han-dler for the user space call, whereas the
  []
 
 
-Underfull \hbox (badness 3323) in paragraph at lines 153--154
+Underfull \hbox (badness 3323) in paragraph at lines 157--158
 \OT1/pcr/m/n/10 call[]usermodehelper[]exec \OT1/ptm/m/n/10 func-tion in-vokes t
 he
  []
 
-[4 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalReport
-Tex/Pictures/JavaGUI.png>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 159.
 
-Underfull \hbox (badness 2495) in paragraph at lines 158--159
+Underfull \hbox (badness 2495) in paragraph at lines 162--163
 []\OT1/ptm/m/it/10 int wait\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 UMH[]WAIT[]EXEC \O
 T1/ptm/m/n/10 to wait for the user
  []
 
 
-Underfull \hbox (badness 2961) in paragraph at lines 158--159
+Underfull \hbox (badness 2961) in paragraph at lines 162--163
 \OT1/ptm/m/n/10 space ap-pli-ca-tion to be in-voked be-fore con-tin-u-
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 158--159
+Underfull \hbox (badness 1043) in paragraph at lines 162--163
 \OT1/ptm/m/n/10 ing, \OT1/pcr/m/n/10 UMH[]WAIT[]PROC \OT1/ptm/m/n/10 to wait fo
 r the en-tire pro-
  []
 
-<Pictures/usermodehelper_code.png, id=25, 847.165pt x 151.56625pt>
+<Pictures/usermodehelper_code.png, id=24, 847.165pt x 151.56625pt>
 File: Pictures/usermodehelper_code.png Graphic file (type png)
 
 <use Pictures/usermodehelper_code.png>
 Package pdftex.def Info: Pictures/usermodehelper_code.png used on input line 16
-4.
+8.
 (pdftex.def)             Requested size: 237.13594pt x 42.42438pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
-[]\OT1/ptm/m/n/10 Uninstall the old ver-sions of the mod-ule at
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+[]\OT1/ptm/m/n/10 Uninstall the old ver-sion of the mod-ule at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 \OT1/pcr/m/n/10 /lib/modules/$(uname -r)/kernel/
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 180--181
+Underfull \hbox (badness 1789) in paragraph at lines 183--184
+[]\OT1/ptm/m/n/10 Copy the new mod-ule from lo-cal user space to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+\OT1/pcr/m/n/10 /lib/modules/$(uname -r)/kernel/
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 184--185
 []\OT1/ptm/m/n/10 Insert the new mod-ule us-ing the \OT1/pcr/m/n/10 sudo insmod
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+[5 <C:/Users/Bonnie/Documents/MSU/CSE825/cse_825/Project/FinalReportTex/Picture
+s/usermodehelper_code.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 []\OT1/ptm/m/it/10 Teensy Pro-grammable Mi-cro-con-troller with at-
  []
 
-[5 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalReport
-Tex/Pictures/usermodehelper_code.png>]
-Underfull \hbox (badness 1005) in paragraph at lines 242--243
+
+Underfull \hbox (badness 1005) in paragraph at lines 246--247
 \OT1/ptm/m/n/10 tions, struc-tures ex-ist in the code for the ``us-b-mouse''
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 242--243
+Underfull \hbox (badness 1092) in paragraph at lines 246--247
 \OT1/ptm/m/n/10 types (found in us-bkbd.c), which can be changed us-
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 242--243
+Underfull \hbox (badness 2285) in paragraph at lines 246--247
 \OT1/ptm/m/n/10 ing the \OT1/pcr/m/n/10 input[]report[]key \OT1/ptm/m/n/10 func
 -tion. Sim-i-larly, the
  []
 
 
-Underfull \hbox (badness 3954) in paragraph at lines 242--243
+Underfull \hbox (badness 3954) in paragraph at lines 246--247
 \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 input[]report[]rel \OT1/ptm/m/n/10 func-tio
 ns, as seen in the
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 255.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 255.
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
+[]\OT1/ptm/b/n/10 TODO (Bon-nie): \OT1/ptm/m/n/10 bet-ter ex-pla-na-tion of the
+ in-
+ []
 
-Overfull \hbox (34.20114pt too wide) in paragraph at lines 255--265
+
+Underfull \hbox (badness 3989) in paragraph at lines 248--249
+\OT1/ptm/m/n/10 put[]report[]key func-tion (or ex-plain with-out men-tion-
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 261.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 261.
+
+Overfull \hbox (34.20114pt too wide) in paragraph at lines 261--271
  [] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
-Underfull \hbox (badness 1721) in paragraph at lines 278--279
+Underfull \hbox (badness 1721) in paragraph at lines 284--285
 []\OT1/ptm/m/n/10 All team mem-bers were re-spon-si-ble for fi-nal read
  []
 
 
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.bbl
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 13--17
 []\OT1/ptm/m/n/9 Mouse over events with jbut-ton.
  []
@@ -409,27 +397,25 @@ Underfull \hbox (badness 1946) in paragraph at lines 58--62
 \OT1/ptm/m/n/9 http://en.wikipedia.org/wiki/Turing[]test.  (Date ac-cessed
  []
 
-) [7
-
-]
-(C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
-\FinalReport.aux) ) 
+) [7]
+(C:\Users\Bonnie\Documents\MSU\CSE825\cse_825\Project\FinalReportTex\FinalRepor
+t.aux) ) 
 Here is how much of TeX's memory you used:
- 1437 strings out of 493921
- 20073 string characters out of 3147276
- 75751 words of memory out of 3000000
- 4722 multiletter control sequences out of 15000+200000
+ 1437 strings out of 494045
+ 19953 string characters out of 3148384
+ 76605 words of memory out of 3000000
+ 4721 multiletter control sequences out of 15000+200000
  23602 words of font info for 48 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 29i,7n,21p,1209b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc
-}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
-utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FinalReport.pdf (7 pages, 204824 bytes).
+ 715 hyphenation exceptions out of 8191
+ 29i,7n,21p,1277b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/hel
+vetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FinalReport.pdf (7 pages, 206380 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
