@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  6 APR 2015 21:40
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.14)  7 APR 2015 21:50
 entering extended mode
 **FinalReport.tex
 
@@ -157,15 +157,15 @@ Underfull \hbox (badness 1694) in paragraph at lines 41--42
 File: Pictures/Teensy.jpg Graphic file (type jpg)
 
 <use Pictures/Teensy.jpg>
-Package pdftex.def Info: Pictures/Teensy.jpg used on input line 91.
+Package pdftex.def Info: Pictures/Teensy.jpg used on input line 93.
 (pdftex.def)             Requested size: 237.13594pt x 116.18436pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 92.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 94.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 92.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 94.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
 
@@ -173,112 +173,112 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 File: Pictures/JavaGUI.png Graphic file (type png)
 
 <use Pictures/JavaGUI.png>
-Package pdftex.def Info: Pictures/JavaGUI.png used on input line 123.
+Package pdftex.def Info: Pictures/JavaGUI.png used on input line 124.
 (pdftex.def)             Requested size: 237.13594pt x 278.24365pt.
 
-Underfull \vbox (badness 7397) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalRepor
 tTex/Pictures/Teensy.jpg>]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 145.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 146.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (1.45319pt too wide) in paragraph at lines 145--146
+Overfull \hbox (1.45319pt too wide) in paragraph at lines 146--147
 \OT1/ptm/m/n/10 tirely within the \OT1/pcr/m/n/10 linux-3.19/drivers/hid/usbhid
 
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 145--146
+Underfull \hbox (badness 5862) in paragraph at lines 146--147
 \OT1/ptm/m/n/10 sub-di-rec-tory and made use of the header files at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
 \OT1/pcr/m/n/10 linux-3.19/include/linux\OT1/ptm/m/n/10 . The ap-pro-pri-
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 149.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 150.
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
  \OT1/ptm/b/n/10 5.3.1. Make-file Mod-i-fi-ca-tion[] \OT1/ptm/m/n/10 In or-der 
 to get the
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 149--150
+Underfull \hbox (badness 3068) in paragraph at lines 150--151
 \OT1/ptm/m/n/10 driver source code in the us-b-hid di-rec-tory to com-
  []
 
 
-Underfull \hbox (badness 1509) in paragraph at lines 149--150
+Underfull \hbox (badness 1509) in paragraph at lines 150--151
 \OT1/ptm/m/n/10 to be made. First, Make-file tar-gets ``all'' and ``clean''
  []
 
 
-Underfull \hbox (badness 5908) in paragraph at lines 149--150
+Underfull \hbox (badness 5908) in paragraph at lines 150--151
 \OT1/ptm/m/n/10 were added. The ``all'' tar-get is set to \OT1/pcr/m/n/10 make 
 -C
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \OT1/pcr/m/n/10 lib/modules/$(KVERSION)/build M=$(PWD)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \OT1/pcr/m/n/10 modules\OT1/ptm/m/n/10 , where \OT1/pcr/m/n/10 KVERSION = $(she
 ll uname
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 \OT1/pcr/m/n/10 /lib/modules/$(KVERSION)/build M=$(PWD)
  []
 
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 153.
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 154.
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
  \OT1/ptm/b/n/10 5.3.2. \OT1/pcr/b/n/10 call[]usermodehelper \OT1/ptm/b/n/10 Fu
 nc-tion[] \OT1/ptm/m/n/10 The
  []
 
 
-Underfull \hbox (badness 6825) in paragraph at lines 153--154
+Underfull \hbox (badness 6825) in paragraph at lines 154--155
 \OT1/pcr/m/n/10 call[]usermodehelper \OT1/ptm/m/n/10 func-tion was es-sen-tial 
 to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 \OT1/ptm/m/n/10 tion-al-i-ties of the \OT1/pcr/m/n/10 call[]usermodehelper[]set
 up
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 \OT1/ptm/m/n/10 and the \OT1/pcr/m/n/10 call[]usermodehelper[]exec \OT1/ptm/m/n
 /10 func-tions,
  []
 
 
-Underfull \hbox (badness 8075) in paragraph at lines 153--154
+Underfull \hbox (badness 8075) in paragraph at lines 154--155
 \OT1/ptm/m/n/10 The \OT1/pcr/m/n/10 call[]usermodehelper[]setup \OT1/ptm/m/n/10
  func-tion pre-
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 153--154
+Underfull \hbox (badness 1655) in paragraph at lines 154--155
 \OT1/ptm/m/n/10 pares a han-dler for the user space call, whereas the
  []
 
 
-Underfull \hbox (badness 3323) in paragraph at lines 153--154
+Underfull \hbox (badness 3323) in paragraph at lines 154--155
 \OT1/pcr/m/n/10 call[]usermodehelper[]exec \OT1/ptm/m/n/10 func-tion in-vokes t
 he
  []
@@ -286,20 +286,20 @@ he
 [4 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalReport
 Tex/Pictures/JavaGUI.png>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 155.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 156.
 
-Underfull \hbox (badness 2495) in paragraph at lines 158--159
+Underfull \hbox (badness 2495) in paragraph at lines 159--160
 []\OT1/ptm/m/it/10 int wait\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 UMH[]WAIT[]EXEC \O
 T1/ptm/m/n/10 to wait for the user
  []
 
 
-Underfull \hbox (badness 2961) in paragraph at lines 158--159
+Underfull \hbox (badness 2961) in paragraph at lines 159--160
 \OT1/ptm/m/n/10 space ap-pli-ca-tion to be in-voked be-fore con-tin-u-
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 158--159
+Underfull \hbox (badness 1043) in paragraph at lines 159--160
 \OT1/ptm/m/n/10 ing, \OT1/pcr/m/n/10 UMH[]WAIT[]PROC \OT1/ptm/m/n/10 to wait fo
 r the en-tire pro-
  []
@@ -309,58 +309,58 @@ File: Pictures/usermodehelper_code.png Graphic file (type png)
 
 <use Pictures/usermodehelper_code.png>
 Package pdftex.def Info: Pictures/usermodehelper_code.png used on input line 16
-4.
+5.
 (pdftex.def)             Requested size: 237.13594pt x 42.42438pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 []\OT1/ptm/m/n/10 Uninstall the old ver-sions of the mod-ule at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 \OT1/pcr/m/n/10 /lib/modules/$(uname -r)/kernel/
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 180--181
+Underfull \hbox (badness 1237) in paragraph at lines 181--182
 []\OT1/ptm/m/n/10 Insert the new mod-ule us-ing the \OT1/pcr/m/n/10 sudo insmod
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
 []\OT1/ptm/m/it/10 Teensy Pro-grammable Mi-cro-con-troller with at-
  []
 
 [5 <C:/GEAviationSystems/Edison/MSU/Classes/CSE_825/cse_825/Project/FinalReport
 Tex/Pictures/usermodehelper_code.png>]
-Underfull \hbox (badness 1005) in paragraph at lines 242--243
+Underfull \hbox (badness 1005) in paragraph at lines 244--245
 \OT1/ptm/m/n/10 tions, struc-tures ex-ist in the code for the ``us-b-mouse''
  []
 
 
-Underfull \hbox (badness 1092) in paragraph at lines 242--243
+Underfull \hbox (badness 1092) in paragraph at lines 244--245
 \OT1/ptm/m/n/10 types (found in us-bkbd.c), which can be changed us-
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 242--243
+Underfull \hbox (badness 2285) in paragraph at lines 244--245
 \OT1/ptm/m/n/10 ing the \OT1/pcr/m/n/10 input[]report[]key \OT1/ptm/m/n/10 func
 -tion. Sim-i-larly, the
  []
 
 
-Underfull \hbox (badness 3954) in paragraph at lines 242--243
+Underfull \hbox (badness 3954) in paragraph at lines 244--245
 \OT1/ptm/m/n/10 and \OT1/pcr/m/n/10 input[]report[]rel \OT1/ptm/m/n/10 func-tio
 ns, as seen in the
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 255.
+(Font)              <7> on input line 257.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 255.
+(Font)              <5> on input line 257.
 
-Overfull \hbox (34.20114pt too wide) in paragraph at lines 255--265
+Overfull \hbox (34.20114pt too wide) in paragraph at lines 257--267
  [] 
  []
 
@@ -368,7 +368,7 @@ Overfull \hbox (34.20114pt too wide) in paragraph at lines 255--265
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-Underfull \hbox (badness 1721) in paragraph at lines 278--279
+Underfull \hbox (badness 1721) in paragraph at lines 280--281
 []\OT1/ptm/m/n/10 All team mem-bers were re-spon-si-ble for fi-nal read
  []
 
@@ -390,22 +390,22 @@ Overfull \hbox (5.30861pt too wide) in paragraph at lines 19--21
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--40
+Underfull \hbox (badness 10000) in paragraph at lines 40--45
 []\OT1/ptm/m/n/9 M. Kim.  Java swing tu-to-rial.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--40
+Underfull \hbox (badness 10000) in paragraph at lines 40--45
 \OT1/ptm/m/n/9 http://users.ece.utexas.edu/ miryung/teaching/EE379K-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--62
+Underfull \hbox (badness 10000) in paragraph at lines 63--67
 []\OT1/ptm/m/n/9 Wikipedia.  Tur-ing test.
  []
 
 
-Underfull \hbox (badness 1946) in paragraph at lines 58--62
+Underfull \hbox (badness 1946) in paragraph at lines 63--67
 \OT1/ptm/m/n/9 http://en.wikipedia.org/wiki/Turing[]test.  (Date ac-cessed
  []
 
@@ -415,10 +415,10 @@ Underfull \hbox (badness 1946) in paragraph at lines 58--62
 (C:\GEAviationSystems\Edison\MSU\Classes\CSE_825\cse_825\Project\FinalReportTex
 \FinalReport.aux) ) 
 Here is how much of TeX's memory you used:
- 1437 strings out of 493921
- 20073 string characters out of 3147276
- 75751 words of memory out of 3000000
- 4722 multiletter control sequences out of 15000+200000
+ 1441 strings out of 493921
+ 20132 string characters out of 3147276
+ 75783 words of memory out of 3000000
+ 4726 multiletter control sequences out of 15000+200000
  23602 words of font info for 48 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  29i,7n,21p,1209b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -429,7 +429,7 @@ eX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
 utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FinalReport.pdf (7 pages, 204824 bytes).
+Output written on FinalReport.pdf (7 pages, 203994 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

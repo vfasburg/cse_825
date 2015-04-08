@@ -42,6 +42,8 @@ Universal Serial Bus (USB) technology has become ubiquitous within our society s
 
 This project will focus on the emulation of Human Interface Devices (HIDs), specifically a keyboard and a mouse, through the use of a programmable microcontroller (the Teensy). More will be explained about how this emulation is possible in the ``Approach" section of this report. The future findings of this project can be extended to other USB-connected devices as well, as demonstrated by Karsten Nohl and Jakob Lell at the Black Hat USA Conference in 2014 when they reprogrammed a USB flash memory device to emulate HIDs \cite{nohl}. Through use of keyboard commands and shell scripting, as well as mouse automation to interact with GUI elements, the microcontroller can essentially perform any task available for the current privilege level of the system within seconds, unbeknownst to to user. In order to launch these attacks, the malicious hacker need only plug in the USB device for a short amount of time. For example, this can be done if a user leaves a computer unlocked. Alternatively, the malicious hacker may get the user to plug the device in themselves, as users tend to have a trust that USB devices will not run any programs on their computers without their consent.
 
+%This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, ``rm -rf *'' which would recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
+
 With this background in mind, the proposed project has the goal of answering three questions through both research and implementation:
 
 \begin{enumerate}
@@ -63,13 +65,13 @@ This final question is the most essential and significant to the project as it w
 
 \section{Previous Work}
 
-The Teensy microcontroller has been used for many purposes, including mounting many different HID based attacks on various systems that accept input from USB human interface devices. An excellent resource that demonstrates the need for HID authentication is the website of Samy Kamkar \cite{samy}, in which the author shows an attack he calls ``USBDriveby''. The USBDriveby attack uses a Teensy microcontroller, emulating a keyboard and a mouse simultaneously,  to create a permanent connection to a remote server that is controlled by the attacker.  This connection will be re-established regularly so that the attacker can issue commands to the machine at any point in the future, including after the microcontroller has been disconnected from the victim's machine.
+The Teensy microcontroller has been used for many purposes, including mounting several different HID based attacks on various systems that accept input from USB human interface devices. An excellent resource that demonstrates the need for HID authentication is the website of Samy Kamkar \cite{samy}, in which the author shows an attack he calls ``USBDriveby''. The USBDriveby attack uses a Teensy microcontroller, emulating a keyboard and a mouse simultaneously,  to create a permanent connection to a remote server that is controlled by the attacker.  This connection will be re-established regularly so that the attacker can issue commands to the machine at any point in the future, including after the microcontroller has been disconnected from the victim's machine.
 
-This example of an emulated HID-based attack serves to show the severity with which a system can be compromised when a malicious USB device is connected for even a short time, and without requiring an administrator password. Although the USBDriveby attack was created for the Apple OSX operating system, similar attacks may be possible on any other system that accepts USB inputs. The list of potential attacks is very large, including attacks with various effects to the victim, and ranging from very simple to very complex in implementation.
+This example of an emulated HID-based attack serves to show the severity with which a system can be compromised when a malicious USB device is connected for even a short period of time, and without requiring an administrator password. Although the USBDriveby attack was created for the Apple OSX operating system, similar attacks may be possible on any other system that accepts USB input devices. The list of potential attacks is very large, including attacks with various effects to the victim, and ranging from very simple to very complex in implementation.
 
 Although some attempts have been made to develop a mechanism for the authentication of USB devices, much less attention has been paid to the authentication of USB human interface devices. In a paper \cite{wang} proposing an extension to a USB driver to authenticate USB connections, the proposed 2-way authentication mechanism specifically excludes ``non-programmable devices'' such as a USB keyboard. This seems sensible, but leaves a system vulnerable to programmed attacks hiding inside a ``non-programmable device''.
 
-Among the literature dealing with USB device security, some papers such as ``Plug \& Prey: Malicious USB Devices'' come closer to a solution regarding malicious HIDs. The paper describes how, on Windows, you can use registry changes to prevent USB devices from being installed. However, this would prevent legitimate HIDs from being installed also, unless a whitelist of vendor IDs and product IDs is used to allow certain devices. However, these properties can be spoofed, so the Teensy device may appear to be a whitelisted device.
+Among the literature dealing with USB device security, some papers such as ``Plug \& Prey: Malicious USB Devices'' \cite{crenshaw} come closer to a solution regarding malicious HIDs. The paper describes how, on Windows, you can use registry changes to prevent USB devices from being installed. However, this would prevent legitimate HIDs from being installed also, unless a whitelist of vendor IDs and product IDs is used to allow certain devices. However, these properties can be spoofed, so the Teensy device may appear to be a whitelisted device.
 
 The final suggestion in this paper is to apply settings to allow administrators to override the policy preventing the installation of a HID. This technique would run into problems if the device in question were the first HID to be connected to the machine, as the user would have no way to allow the installation. Furthermore, it requires administrative privileges to plug in a keyboard or mouse. The mechanism to disable installing USB devices is very different for Linux system, but the results and limitations are roughly the same.
 
@@ -83,9 +85,9 @@ Finally, at the 2014 Las Vegas Black Hat Security Conference, Karsten Nohl and J
 
 \section{Approach}
 
-This project has two main parts which include first exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project as well as the equipment the team will require.
+This project includes two main parts which include first exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project.
 
-For the first part of the project, the team will program a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea would be to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system will recognize the Teensy as a ``safe" device. This is easily achievable after installing Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks will be created, including some which would require administrative privileges.
+For the first part of the project, the team programed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy}.
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/Teensy}}
@@ -93,13 +95,11 @@ For the first part of the project, the team will program a Teensy microcontrolle
    \label{fig:Teensy}
 \end{figure}
 
-This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, ``rm -rf *'' which recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
+For the second part of the project, the team worked on preventing the attacks that were created in the first part by creating a modification to the Linux driver which handles USB devices such as a keyboard and mouse. The goal of this modification is to authenticate the USB device before any attached keyboard or mouse is allowed to be used normally.
 
-For the second part of the project, the team worked on preventing the attacks that were created in the first part by developing Linux drivers to authenticate the USB device before any attached keyboard or mouse is allowed to be used normally. Some preliminary ideas include using a series of Turing tests to determine if the input device is being used by a computer or a human. Essentially, a Turing test is a test of a machine's ability to exhibit human behavior indistinguishable of that of a human \cite{wiki}.
+In order to authenticate the USB device, a basic Turing test is used to determine if the input device is being used by a computer or a human. Essentially, a Turing test is a test of a machine's ability to exhibit human behavior indistinguishable of that of a human \cite{turing}. A common way to administer this test is through the use of a random text Captcha. 
 
-To test a keyboard device, a random text captcha could be used. The program installed on the Teensy will not know what the random captcha text is going to be, so a human user is required to type in the letters by hand before the keyboard is allowed to be used. In addition, a mouse could be verified by requiring a user to follow a randomly generated pattern on the screen or point and click to something in a random location on the screen to verify that a human is the one sending the commands as a mouse. If any of these tests fail, no other input is allowed from the device until the captcha or pattern is complete.
-
-For equipment needed, the entire team will be installing the Ubuntu Linux operating system on personal computers for writing and testing the software for the USB drivers. The team will also purchase a Teensy microcontroller, which will be programmed using Teensy development tools and loader software (which can be found online) to facilitate attacks on the computer as described earlier. Version control of all source code and LaTeX files will be handled with a git repository on github. A shared Google Drive folder will also be used as a means for the team to document and brainstorm ideas as well as store files where version control is not needed.
+The program installed on the Teensy would not know what the random captcha text is going to be, so a human user is required to type in the letters before the keyboard is allowed to be used. In addition, the mouse is verified by requiring the user to hover over the letters of the captcha on a virtual keyboard with the mouse. If the captcha is not entered correctly, the test fails and no other input is allowed from the device until the captcha is completed correctly.
 
 %------------------------------------------------------------------------- 
 
@@ -112,11 +112,12 @@ For equipment needed, the entire team will be installing the Ubuntu Linux operat
 %------------------------------------------------------------------------- 
 
 \subsection{Teensy Attacks}
+\label{section:teensy}
 
 %------------------------------------------------------------------------- 
 
 \subsection{Java GUI}
-
+\label{section:gui}
 In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing \cite{kim} library as shown in Figure~\ref{fig:JavaGUI}.
 
 \begin{figure}[H]
@@ -125,7 +126,7 @@ In order for the user to validate the USB device, a Graphical User Interface (GU
 	\label{fig:JavaGUI}
 \end{figure}
 
-The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The user can generate a new captcha with the ``Get New Captcha'' button in the event one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
+The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The current captcha is non-web based and is generated completely with the use of a java class. The user can generate a new captcha with the ``Get New Captcha'' button in the event one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
 
 The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with some kind of computer vision. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
 
@@ -150,7 +151,7 @@ In order to get the driver source code in the usbhid directory to compile initia
 
 \subsubsection{\texttt{call\_usermodehelper} Function}
 
-The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} functions combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters \cite{ibm}:
+The \texttt{call\_usermodehelper} function was essential to the driver modification work. This function allows user space applications to be invoked from the kernel. The \texttt{call\_usermodehelper} function combines the functionalities of the \texttt{call\_usermodehelper\_setup} and the \texttt{call\_usermodehelper\_exec} functions, which are both part of the \texttt{usermode-helper} API. The \texttt{call\_usermodehelper\_setup} function prepares a handler for the user space call, whereas the \texttt{call\_usermodehelper\_exec} function invokes the user space call. The \texttt{call\_usermodehelper} function is defined in \texttt{linux-3.19/include/linux/kmod.h} and has four input parameters \cite{ibm}:
 \begin{itemize}
 \item \textit{char *path}, the path to the program to be executed
 \item \textit{char **argv}, the null terminated list of program arguments, including the name of the program at zeroth index
@@ -167,7 +168,7 @@ The newly implemented usage of this function in the usbhid driver is shown in Fi
 \end{figure}
 
 The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged upon insertion and removal of a USB-HID device was searched within the \texttt{usbhid} directory to determine a subset of files and functions to modify. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash the \texttt{usbhid\_open} function in hid-core.c.
-
+%TODO%%%%%%%%
 TODO: discussion of system logging and calling the bash script using the function
 
 \subsubsection{Installation of Modules}
@@ -203,7 +204,7 @@ This test was executed to ensure that the captcha program runs as expected for t
 
 \item \textit{Teensy Programmable Microcontroller with attack loaded.}
 
-The Teensy was loaded with each of the attacks described above in the ``Teensy Attacks'' section of the paper and set to emulate both a USB mouse and USB keyboard. The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded.
+The Teensy was loaded with each of the attacks described in Section~\ref{section:teensy} of the paper and set to emulate both a USB mouse and USB keyboard. The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded.
 
 \end{itemize}
 
@@ -220,6 +221,7 @@ Usability testing is used in products that have a user-centered interaction in o
 %------------------------------------------------------------------------- 
 
 \section{Technical Weaknesses}
+\label{section:weakness}
 
 %------------------------------------------------------------------------- 
 
@@ -235,7 +237,7 @@ In this paper, we examined the following three aspects of USB-HID emulation atta
 
 The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to stop the Teensy-based attacks while still allowing normal use of USB input devices such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
 
-As this was a proof of concept, in addition to fixing the technical weaknesses explained in the previous section, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in the ``Java GUI'' section of the paper, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
+As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in Section~\ref{section:gui}, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to spearate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
 
 The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
 
