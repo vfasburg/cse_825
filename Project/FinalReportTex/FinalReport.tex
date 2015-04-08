@@ -143,12 +143,11 @@ The driver modification development for this paper was done on a computer runnin
 
 The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code and by subsquently using Linux system logging functionality while connecting and disconnecting a USB-HID device to test that the appropriate drivers were found (see the section below on the \texttt{call\_usermodehelper} function for more detail). Through this process, the ``usbhid", ``usbmouse", and ``usbkbd" drivers were discovered. For the scope of this project, only the usbhid driver needed to be modified, but the code for the usbmouse and usbkbd drivers is important to understand for possible future improvements to this defense against USB-HID emulation attacks.
 
-\subsubsection{Makefile Modification}
+\subsubsection{Initial Driver Compilation}
 
-In order to get the driver source code in the \texttt{drivers/hid/usbhid} directory to compile initially after download, several modifications had to be made. First, Makefile targets ``all'' and ``clean'' were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. 
+In order to get the driver source code in the \texttt{drivers/hid/usbhid} directory to compile initially after download, several modifications had to be made to the provided Makefile, which uses the ``kbuild'' Linux kernel build system. First, Makefile targets ``all'' and ``clean'' (using the syntax for building an external module) were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. The ``\texttt{-C}'' option in both of these targets indicates that the path to the kernel source is being provided \textemdash \ the \texttt{make} program changes to this directory during the build process and then changes back to the local directory when the process is complete. The \texttt{KVERSION} variable expands to the current kernel release. For example, if \texttt{KVERSION = 3.13.0-46-generic}, the kernel version is 3.13.0 and ``46'' refers to the release number determined by the patches applied during software updates. The ``\texttt{M=<directory>}'' option is what indicates that an external module is being built and provides the absolute path to the module. Thus, this Makefile needs to be in the same directory as the usbhid driver code %\cite{kbuild}.
 
-\textbf{TODO:} explain what these two targets do  
-\textbf{TODO:} explain that drivers compiled under one release version are not backwards compatible (need to install in the kernel release used for compilation, even if it is older or recompile)
+During project development, it was noted that there is a consequence to using the \texttt{uname} program in the Makefile to determine the current kernel release \textemdash \ loadable kernel modules compiled under a specific kernel release can only be installed on that release. Therefore, when the kernel is patched and a new release is created, the driver must be recompiled if the user wishes to include the modified driver in the newest kernel release.
 
 After adding the targets, for any files in the directory that were still producing errors due to unrecognized information from the linux header files when the \texttt{make} program was executed, the appropriate code was copied and pasted locally to eliminate compilation errors.
 
@@ -170,9 +169,17 @@ The newly implemented usage of this function in the usbhid driver is shown in Fi
    \label{fig:usermodehelper_code}
 \end{figure}
 
-The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged by the unmodified driver(s) upon insertion and removal of a USB-HID device was searched within the \texttt{usbhid} directory to determine a subset of files and functions to modify. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash the \texttt{usbhid\_open} function in hid-core.c, located in the \texttt{drivers/hid/usbhid} directory.
+The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged by the unmodified driver(s) upon insertion and removal of a USB-HID device was searched within the \texttt{drivers} directory of the source to determine a subset of files and functions to test that pertained to the connection and disconnection of the device. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash \ the \texttt{usbhid\_open} function in hid-core.c, located in the \texttt{drivers/hid/usbhid} directory.
 
-\textbf{TODO:} discussion of system logging and calling the bash script using the function (important parameters, i.e. the wait time, the programs)
+First, only the \texttt{argv\_logger} and \texttt{envp} variables shown above in Figure~\ref{fig:usermodehelper_code} were added, along with the call to the function. The \texttt{envp} is a null terminated array that defines the execution environment for the user space application. The \texttt{argv\_logger} array indicates that the system logger program should be called with one argument \textemdash \ the text to write to the log file. The result of this when any USB-HID device is plugged into the computer is the ``logger'' line displayed in  Figure~\ref{fig:syslog}. Note that the call to \texttt{call\_usermodehelper} uses a wait time of \texttt{UMH\_WAIT\_EXEC}, meaning that the code blocks until the program is executed and then continues.
+
+\begin{figure}[H]
+   \center{\includegraphics[width=1\linewidth]{Pictures/syslog}}
+   \caption{System log showing the \texttt{usbhid\_open} function call}
+   \label{fig:syslog}
+\end{figure}
+
+Later, after the bash script (to be described in a later section of the paper) was developed, the \texttt{argv\_shell\_usbhid} array and call to the bash program were added. The bash program is passed two arguments, ``\texttt{-c}'' and the path to the shell script. The \texttt{-c} option indicates that the shell script should be treated as an executable command, rather than a positional parameter to a command. The previously used call to the system logged was kept to ensure that the \texttt{usbhid\_open} function was being called appropriately in the case that the bash script did not execute correctly. 
 
 \subsubsection{Installation of Modules}
 
@@ -199,15 +206,19 @@ After development of the modified driver was complete and installed on an Ubuntu
 \begin{itemize}
 \item \textit{USB Flash Drive.}
 
-This test was executed to ensure that the captcha program only appears for human interface devices as opposed to for all USB devices. The computer responded as expected \textemdash \ a File window showing the contents of the USB flash drive was opened and the captcha program did not run.
+This test was executed to ensure that the captcha program only appears for human interface devices as opposed to for all USB devices. The computer responded as expected \textemdash \ a File window showing the contents of the USB flash drive was opened and the captcha program did not run. A review of the system log shows that different calls are made for USB file storage devices versus the calls made for USB-HID devices.
 
 \item \textit{USB Mouse and USB Keyboard}.
 
-These tests were executed to ensure that the captcha program runs as expected for the devices on which this research focused. More details on the results of these tests, as well as how users responded to the captcha program, can be found in the following section (``Usability Testing").
+These tests were executed to ensure that the captcha program runs as expected for the devices on which this research focused. When either of the devices is plugged into a USB port, the captcha program appears. Note that due to the design of the shell script, if the captcha program is active when an additional USB-HID device is connected, the code to restrict the keyboard and mouse functionalities and launch the captcha program is skipped. During the time that the captcha program is active, the user is unable to click with the mouse or use special, non-alphanumeric, keys on the keyboard. As an extra precaution, the captcha program also holds focus to ensure that the user cannot start or interact with any other programs on the computer. When the captcha is successfully completed, the program exits and normal mouse and keyboard functionality are restored. More details on the results of these tests, as well as how users responded to the captcha program, can be found in the following section (``Usability Testing").
 
 \item \textit{Teensy Programmable Microcontroller with attack loaded.}
 
-The Teensy was loaded with each of the attacks described in Section~\ref{section:teensy} of the paper and set to emulate both a USB mouse and USB keyboard. The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded.
+A Teensy (version 3.1) was set to simultaneously emulate a keyboard, mouse, and joystick (all USB-HID devices) and loaded with each of the attacks described above in the ``Teensy Attacks'' section of the paper. The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded. 
+
+The four keyboard-based attacks, in which the Teensy program attempts to open a terminal using CTRL-ALT-T and subsequently execute various malicious commands, were all prevented. Testing revealed that the programs had the ability to open a terminal window, but the captcha program always loads before the malicious commands can be performed. \textit{Interestingly, the Teensy attacks had the ability to unrestrict the keyboard so that special characters, such as the CTRL and ALT keys, can be used. However, because of the focus-grabbing feature of the captcha program, this does not cause any serious issues.}
+
+The mouse-based attack...\textbf{TODO when the issue is fixed?}
 
 \end{itemize}
 
