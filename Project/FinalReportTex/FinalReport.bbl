@@ -26,6 +26,11 @@ F.~{Barbhuiya}, T.~{Saikia}, and S.~{Nandi}.
 \newblock In Proceedings of the 4th International Conference on Cyberspace
   Safety and Security, 2012.
 
+\bibitem{crenshaw}
+A.~{Crenshaw}.
+\newblock Plug and prey: Malicious usb devices.
+\newblock Presented at Shmoocon, 2011.
+
 \bibitem{samy}
 S.~Kamkar.
 \newblock Usbdriveby.
@@ -44,7 +49,7 @@ K.~{Nohl} and J.~{Lell}.
 \newblock Presented at Black Hat, Las Vegas, August 2014.
 
 \bibitem{shahzad}
-M.~{Shahzad}.
+M.~Shahzad.
 \newblock Gesture and typing-based behavioral authentication.
 \newblock Presented to CSE-825, February 2015.
 
@@ -54,7 +59,7 @@ Z.~{Wang} and A.~{Stavrou}.
 \newblock In Proceedings of the IEEE Sixth International Conference on Software
   Security and Reliability Companion, 2012.
 
-\bibitem{wiki}
+\bibitem{turing}
 Wikipedia.
 \newblock Turing test.
 \newblock http://en.wikipedia.org/wiki/Turing\_test.
