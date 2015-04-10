@@ -35,7 +35,14 @@ East Lansing, MI, USA\\
 \thispagestyle{empty}
 
 %------------------------------------------------------------------------- 
-\section{Overview}
+
+\section{Abstract}
+\label{section:abstract}
+
+%-------------------------------------------------------------------------
+
+\section{Introduction}
+\label{section:intro}
 
 Universal Serial Bus (USB) technology has become ubiquitous within our society since the turn of the twenty-first century. This type of the connection has become the standard for computer peripherals such as keyboards, mouses, printers, and external disk drives. USB has also become a common method of connecting devices such as smart phones and digital cameras to computers for power supply and media transfer. It is important for this project to note that all hardware attached to the computer via USB (and other protocols as well) requires an individual device driver in order to enable communication with the computer. Device drivers provide a software interface between the computer and the hardware, allowing the computer to access functions without knowing the exact details of the hardware. Typically, installation of a new device driver is the only obvious notification from a computer desktop that a USB device has been plugged into the computer \textemdash{} the operating system will not ask the user if he or she wishes to allow the device.
 
@@ -60,15 +67,26 @@ This final question is the most essential and significant to the project as it w
 
 \end{enumerate}
 
+%-------------------------------------------------------------------------
+
+\subsection{Motivation}
+\label{section:motivation}
+
+%-------------------------------------------------------------------------
+
+\subsection{Organization}
+\label{section:organization}
+
 %------------------------------------------------------------------------- 
 
-\section{Previous Work}
+\section{Related Work}
+\label{section:related}
 
 The Teensy microcontroller has been used for many purposes, including mounting several different HID based attacks on various systems that accept input from USB human interface devices. An excellent resource that demonstrates the need for HID authentication is the website of Samy Kamkar \cite{samy}, in which the author shows an attack he calls ``USBDriveby''. The USBDriveby attack uses a Teensy microcontroller, emulating a keyboard and a mouse simultaneously,  to create a permanent connection to a remote server that is controlled by the attacker.  This connection will be re-established regularly so that the attacker can issue commands to the machine at any point in the future, including after the microcontroller has been disconnected from the victim's machine.
 
 This example of an emulated HID-based attack serves to show the severity with which a system can be compromised when a malicious USB device is connected for even a short period of time, and without requiring an administrator password. Although the USBDriveby attack was created for the Apple OSX operating system, similar attacks may be possible on any other system that accepts USB input devices. The list of potential attacks is very large, including attacks with various effects to the victim, and ranging from very simple to very complex in implementation.
 
-Although some attempts have been made to develop a mechanism for the authentication of USB devices, much less attention has been paid to the authentication of USB human interface devices. In a paper \cite{wang} proposing an extension to a USB driver to authenticate USB connections, the proposed 2-way authentication mechanism specifically excludes ``non-programmable devices'' such as a USB keyboard. This seems sensible, but leaves a system vulnerable to programmed attacks hiding inside a ``non-programmable device''.
+Although some attempts have been made to develop a mechanism for the authentication of USB devices, much less attention has been paid to the authentication of USB human interface devices. In a paper \cite{wang} proposing an extension to a USB driver to authenticate USB connections, the proposed two-way authentication mechanism specifically excludes ``non-programmable devices'' such as a USB keyboard. This seems sensible, but leaves a system vulnerable to programmed attacks hiding inside a ``non-programmable device''.
 
 Among the literature dealing with USB device security, some papers such as ``Plug \& Prey: Malicious USB Devices'' \cite{crenshaw} come closer to a solution regarding malicious HIDs. The paper describes how, on Windows, you can use registry changes to prevent USB devices from being installed. However, this would prevent legitimate HIDs from being installed also, unless a whitelist of vendor IDs and product IDs is used to allow certain devices. However, these properties can be spoofed, so the Teensy device may appear to be a whitelisted device.
 
@@ -83,10 +101,11 @@ Finally, at the 2014 Las Vegas Black Hat Security Conference, Karsten Nohl and J
 %------------------------------------------------------------------------- 
 
 \section{Approach}
+\label{section:approach}
 
-This project includes two main parts which include first exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project.
+This project includes two main parts which first is exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project.
 
-For the first part of the project, the team programmed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy}.
+For the first part of the project, the team programmed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy} (Teensy Attacks).
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/Teensy}}
@@ -103,6 +122,8 @@ The program installed on the Teensy would not know what the random captcha text 
 %------------------------------------------------------------------------- 
 
 \section{Threat Model}
+\label{section:threat}
+
 The type of attack that is explored in this paper employs a very specific set of capabilities, and tends to be subject to certain limitations in functionality. Although the Teensy microcontroller was the primary focus in this paper, there are other models of microcontroller capable of emulating HIDs  \cite{captcha}, and some of them have different properties which may warrant separate consideration. 
 
 The most basic version of the attack considered here is the type of attack for which examples are provided in this paper. These attacks involve using preprogrammed actions of a keyboard and/or mouse that run automatically on the Teensy microcontroller when the device is plugged into a host system's USB port. Although the Teensy microcontroller cannot be programmed to be perceived simultaneously by a host system as both an HID and another type of device such as a flash drive (at least not without significant customization), the proposed solution is meant to be effective against a device that does employ this capability, as long as this solution is run in conjunction with an operating system or setting that does not execute programs on newly found devices without user confirmation.
@@ -112,20 +133,27 @@ For our purposes, the assumption is made that the malicious device is not capabl
 The type of attack considered here would generally be used when an attacker lacks either physical access or login privileges on the target machine. If an attacker did already have physical and login access, an HID emulation device would do little more than function as a faster method of typing commands than the attacker could do by hand. Instead, this type of attack would be used in combination with social engineering intended to trick a legitimate user of the machine into plugging in the malicious device. For this reason, it is assumed that the attacker cannot access the host machine directly at the time of the attack, in which case the attacker could simply complete the captcha manually.
 
 Finally, the types of attacks that are possible depend greatly on the tools that are installed on the host system. This requires that the attacker be able to predict what operating system is running on the victim machine, and the programs that are installed on it.  In the Teensy code examples used here, only programs that come pre-installed on the 64-bit Ubuntu 14.04 LTS are used. This makes it a very safe assumption that the attacks would be successful on a system running a standard installation of this operating system. 
+
+%------------------------------------------------------------------------- 
+
+\section{Design}
+\label{section:design}
+
 %------------------------------------------------------------------------- 
 
 \section{Technical Details}
+\label{section:technical}
 
 %------------------------------------------------------------------------- 
 
 \subsection{Teensy Attacks}
 \label{section:teensy}
-\label{section:teensy}
+
 This section describes the code developed to be loaded directly onto the Teensy microcontroller, which performs a variety of malicious actions. The purpose of these attacks is to provide examples of the types of security threats that exist in operating systems that do not require any authentication of USB human interface devices. Each of the following attacks describes an attack and how it was implemented, and suggests ways that the attacks could be improved.
 
 \begin{description}
 \item[Delete All Files] \hfill \\
-This is the simplest attack, which simply spawns a new terminal window (using the shortcut ctrl+alt+t) and would then enter the command ``rm -rf *". This attack would simply erase the entire hard drive of the victim's machine. Files deleted in this way may require time consuming or costly measures to be taken to restore the data, if it can be recovered at all. An even more effective version of this command would be to invoke a short script that wrote random data over the entire disk, making it extremely difficult or impossible to recover any overwritten data. In order to test this script, the real command is not used, but instead the line ``ALL FILES DELETED" is simply printed to the screen. This is used only for testing and to prevent the accidental deletion of a user's files. 
+This is the simplest attack, which simply spawns a new terminal window (using the shortcut ctrl+alt+t) and would then enter the command \texttt{rm -rf *}. This attack would simply erase the entire hard drive of the victim's machine. Files deleted in this way may require time consuming or costly measures to be taken to restore the data, if it can be recovered at all. An even more effective version of this command would be to invoke a short script that wrote random data over the entire disk, making it extremely difficult or impossible to recover any overwritten data. In order to test this script, the real command is not used, but instead the line ``ALL FILES DELETED" is simply printed to the screen. This is used only for testing and to prevent the accidental deletion of a user's files. 
 
 \item[Steal Files] \hfill \\
 For an attacker who is not satisfied with simply deleting a victim's files, but would instead prefer to keep them for himself, this attack can be used to transfer any files an attacker wants to a server under the control of the attacker. For this attack, we set up a server, using an inexpensive home router, that can be accessed from anywhere over FTP. The Teensy program uses the built-in ftp tool to transfer any file containing the word ``secret" from the victim's computer to the IP address of this server.  If the attacker did not know exactly what files he would want from the victim, he could easily transfer a large number of files to this server, such as the victim's entire /home directory. If transferring a potentially large number of files, it may be useful to add commands to the Teensy code to camouflage the fact that the transfers are taking place, as they may take enough time to complete that the user realizes what is happening and cancels the transfer. The transfer could be camouflaged, for example, by minimizing the terminal window performing the transfers or continuously spawning new windows to confuse the user and buy time for the transfer to complete.
@@ -135,14 +163,14 @@ A ``reverse shell" into a machine is a term used to describe a terminal on a rem
 
 There are many ways to open a reverse shell on an Ubuntu machine, but this example attack uses a perl script to connect from the victim's computer directly to an open port on the attacker's computer, and await commands from the attacker. This technique was chosen because it requires very few keystrokes to initiate the connection, making it possible to execute the command quickly from the Teensy without a user being aware.  The Teensy code for this attack was adapted from a perl script that is freely available on the internet \cite{pentest}. Since perl is available by default with the Ubuntu 14.04 installation, the attacker can be relatively certain that the attack will work properly on the victim's machine, assuming that the victim is connected to the internet at the time the malicious Teensy device is inserted. 
 
-The version of this attack provided for this proof-of-concept is very simple, but there are potential enhancements that would allow this principle to be extended to make the attack even more dangerous. For example, the Teensy could easily store the script in the /etc/init.d folder instead of simply executing it in a terminal. The result would be that every time the victim's system is rebooted, it would attempt to connect to the attacker's machine, ensuring that the attacker has continuous access to the machine, even after it is rebooted.  Opening the reverse shell in this way also would not show any output, further reducing the probability that an attacker would realize that his system has been compromised. 
+The version of this attack provided for this proof-of-concept is very simple, but there are potential enhancements that would allow this principle to be extended to make the attack even more dangerous. For example, the Teensy could easily store the script in the \texttt{/etc/init.d} folder instead of simply executing it in a terminal. The result would be that every time the victim's system is rebooted, it would attempt to connect to the attacker's machine, ensuring that the attacker has continuous access to the machine, even after it is rebooted.  Opening the reverse shell in this way also would not show any output, further reducing the probability that an attacker would realize that his system has been compromised. 
 
 \item[Steal Password/Create Account] \hfill \\
 This example attack contains two parts. The purpose of the first part of this attack is to obtain the root password. Once the root password is obtained, the Teensy can use this password to perform many commands that require root privileges and cannot be executed without entering a password.  In order to capture the password from the user, this example employs a social engineering tactic to trick the user into providing the root password. The Teensy spawns a terminal and types a message explaining that the user needs to install a driver package to use the new device, and then provides the same prompt for the root user's password that is normally requested when a command that requires root privileges is attempted (such as installing any new software). If the user is fooled into believing that this is a legitimate message from the operating system, then the user will type the root password into the terminal.
 
 Since the Teensy microcontroller is acting only as a keyboard, it is not capable of accepting the password and storing it for later use. To get around this problem, this example includes the Teensy first typing commands into the terminal which executes a continuous loop, which sleeps until the contents of a temporary file are changed.  After this loop is set up, the screen is quickly cleared before the user has a chance to notice the commands. Once the user types in the root password, the password is stored in the temporary file and is read in from the looping execution thread. This loop can now execute the commands that require the root password.
 
-Since the \texttt{sudo} command (the command that executes another command as root and requires a password) has an option to allow the password to be provided via the standard in, the password can be piped in from a variable that was set from the value of the temporary file in which the password was stored. This allows the attacker to perform any command he desires, including altering file permission, changing system files, and installing new software.
+Since the \texttt{sudo} command (the command that executes another command as root and requires a password) has an option to allow the password to be provided via the standard in, the password can be piped in from a variable that was set from the value of the temporary file in which the password was stored. This allows the attacker to perform any command they desire, including altering file permission, changing system files, and installing new software.
 
 In this example, once the password has been stolen from the user, the Teensy begins typing commands that add a new root user to the system. Once this is complete, an attacker will be able to log into the system at any time, either over a network or by physically accessing the machine at some later time. Furthermore, this new user has root privileges, so the attacker's credentials can be used to access or modify any files on the entire system, including those of other users. 
 
@@ -151,31 +179,11 @@ In this version of Linux, the login screen shows all of the different users. Alt
 \item[Mouse] \hfill \\
 All of the attacks thus far presented have used only the keyboard to cause malicious behavior. This final example is used to defend the necessity of protecting a newly inserted USB mouse with a captcha as well as a keyboard. Note that the program described in this paper utilizes a restriction of the keyboard to only letters and numbers, and prevents the mouse from clicking.  If only the keyboard were restricted, then a Teensy device posing as both a keyboard and mouse would be able to use the mouse to open a new terminal, as shown in this example. Once this terminal is opened, the Teensy could type any command that consists of only letters and numbers into the terminal without ever completing the captcha.
 \end{description}
-%------------------------------------------------------------------------- 
-
-\subsection{Java GUI}
-\label{section:gui}
-In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing \cite{kim} library as shown in Figure~\ref{fig:JavaGUI}.
-
-\begin{figure}[H]
-	\center{\includegraphics[width=1\linewidth]{Pictures/JavaGUI}}
-	\caption{GUI to Validate USB Device}
-	\label{fig:JavaGUI}
-\end{figure}
-
-The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The current captcha is non-web based and is generated completely with the use of a Java class. The user can generate a new captcha with the ``Get New Captcha'' button in the event that one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
-
-The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with some kind of computer vision. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
-
-There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate'' button.
-
-The second method would be used if a mouse needed to be validated. The user would use the virtual keyboard on the GUI to type the captcha into the textbox. As another security feature, clicking of the mouse has been disabled. The user would activate the keys by briefly hovering \cite{hover} over each key that is needed. When finished, the user can also briefly hover over the ``Validate'' button.
-
-If the captcha is incorrect, an error message would appear along with a new captcha to attempt. With a correct captcha, the GUI is closed and the user gains full access of both the keyboard and mouse.
 
 %------------------------------------------------------------------------- 
 
 \subsection{Kernel}
+\label{section:kernel}
 
 The driver modification development for this paper was done on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred using the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}, version 3.19.3. 
 
@@ -217,7 +225,7 @@ First, only the \texttt{argv\_logger} and \texttt{envp} variables shown above in
    \label{fig:syslog}
 \end{figure}
 
-Later, after the bash script (to be described in a later section of the paper) was developed, the \texttt{argv\_shell\_usbhid} array and call to the bash program were added. The bash program is passed two arguments, ``\texttt{-c}'' and the path to the shell script. The \texttt{-c} option indicates that the shell script should be treated as an executable command, rather than a positional parameter to a command. The previously used call to the system logged was kept to ensure that the \texttt{usbhid\_open} function was being called appropriately in the case that the bash script did not execute correctly. 
+Later, after the bash script, described in Section~\ref{section:bash} (Bash Script), was developed, the \texttt{argv\_shell\_usbhid} array and call to the bash program were added. The bash program is passed two arguments, ``\texttt{-c}'' and the path to the shell script. The \texttt{-c} option indicates that the shell script should be treated as an executable command, rather than a positional parameter to a command. The previously used call to the system logged was kept to ensure that the \texttt{usbhid\_open} function was being called appropriately in the case that the bash script did not execute correctly. 
 
 \subsubsection{Installation of Modules}
 
@@ -234,6 +242,8 @@ To verify the insertion or removal of a module, the \texttt{lsmod} command can b
 %------------------------------------------------------------------------- 
 
 \subsection{Bash Script}
+\label{section:bash}
+
 The script that is called from driver code is responsible for opening the captcha program and for restricting the user input from the keyboard and mouse to ensure that the captcha is completed before any other input can be taken from these HIDs.  The script works by using the modifying the X11 keyboard and mouse mappings using the \texttt{xmodmap} function. Through this function, all keyboard inputs except for letters, numbers, and the shift and enter keys are unmapped (meaning that they will not be received by the operating system or any application) using a pre-defined restricted keyboard map file. All mouse keys are similarly unmapped, disabling all button clicks on any mice connected to the system. 
 
 Once the input restrictions are in place, the script spawns the Java jar that opens the captcha completion window. The keyboard and mouse restrictions prevent the user from closing the captcha GUI or performing any other action until the captcha is completed. As a backup to this system, the GUI itself is also programmed to always keep in focus and stay on top of other windows.
@@ -244,9 +254,34 @@ In order to make these commands effective on the current user, while running a s
 
 These setup steps are also needed if the script is to be run from a udev rule, which can be used to execute a script whenever a certain category of USB device is inserted. This was the original method by which the script was invoked, until it was proven to be feasible to run the script directly from the USB driver within the kernel.
 
+
+%------------------------------------------------------------------------- 
+
+\subsection{CAPTCHA GUI}
+\label{section:gui}
+
+In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing \cite{kim} library as shown in Figure~\ref{fig:JavaGUI}.
+
+\begin{figure}[H]
+	\center{\includegraphics[width=1\linewidth]{Pictures/JavaGUI}}
+	\caption{GUI to Validate USB Device}
+	\label{fig:JavaGUI}
+\end{figure}
+
+The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The current captcha is non-web based and is generated completely with the use of a Java class. The user can generate a new captcha with the ``Get New Captcha'' button in the event that one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
+
+The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with some kind of computer vision. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
+
+There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate'' button.
+
+The second method would be used if a mouse needed to be validated. The user would use the virtual keyboard on the GUI to type the captcha into the textbox. As another security feature, clicking of the mouse has been disabled. The user would activate the keys by briefly hovering \cite{hover} over each key that is needed. When finished, the user can also briefly hover over the ``Validate'' button.
+
+If the captcha is incorrect, an error message would appear along with a new captcha to attempt. With a correct captcha, the GUI is closed and the user gains full access of both the keyboard and mouse.
+
 %------------------------------------------------------------------------- 
 
 \section{Experimental Results}
+\label{section:experimental}
 
 After development of the modified driver was complete and installed on an Ubuntu system, the modified driver was tested against three types of devices: 
 
@@ -274,6 +309,8 @@ The mouse-based attack, in which the Teensy program opens a terminal without the
 %------------------------------------------------------------------------- 
 
 \section{Usability Testing}
+\label{section:usability}
+
 Usability testing is used in products that have a user-centered interaction in order to evaluate it by testing on outside users. As a part of the overall testing of the USB verification software, we had individuals who were not part of the development team use the software to see their overall impression of the design. The following summarizes  the outcomes of the study:
 \begin{enumerate}
 \item Users did not completely understand the idea behind hovering over the buttons to activate them. We found that some users would try to click, and then ended up hovering too long which allowed multiple letters to appear. In future versions of the Java GUI, we could reevaluate the usefulness of the hovering feature. Since the GUI does also keep its own focus and stays on top of other windows, disabling the clicking may not be required. 
@@ -285,6 +322,7 @@ Usability testing is used in products that have a user-centered interaction in o
 
 \section{Technical Weaknesses}
 \label{section:weakness}
+
 This implementation of the keyboard and mouse restriction contains a vulnerability that allows a short window of time in which commands from the Teensy device were executed before the keyboard and mouse restrictions were imposed. In our testing, there was considerable variability in the number of keystrokes that could be executed by the Teensy before having the input restrictions imposed and the captcha GUI opened. In the best case, there was only enough time to spawn a terminal, and the captcha window appeared before any commands could be issued by the Teensy. However, on the computer that took the most time to open the captcha window, enough keystrokes were allowed through for the Teensy to invoke a short attack, such as ``rm -rf *".  This weakness is a limitation only of the particular implementation, and could be remedied with further work. See Section~\ref{section:conclusion} for a description of this improvement.
 
 The threat model that was considered in this paper is concerned primarily with the unmodified Teensy microcontroller and similar HID emulation devices. However, it is possible to modify the Teensy microcontroller to connect it to a real keyboard, which will pass keystrokes through a real keyboard \cite{pjrc}. This makes it possible for an attacker to provide a keyboard with an embedded malicious device to a legitimate user. When the user plugs in the keyboard, the Teensy could wait for the user to complete the captcha (passing through the user's input as entered on the actual keyboard) and then execute a malicious script once the captcha has been completed. The solution described in this paper would not prevent an attack of this type.
@@ -312,7 +350,7 @@ As this was a proof of concept, in addition to fixing the technical weaknesses e
 
 The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
 
-Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python (which are both common computer languages for handling graphics) in order to call the program from the C code \textemdash \ the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap\_orig'' mapping file is  analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c). There are two ways in which the kernel can restrict the use of special characters on the keyboard. The first option is to edit the \texttt{use\_kbd\_keycode} array to match the ``Xmodmap\_restricted'' file (if the array declaration is made non-constant). The other option is to use the \texttt{input\_report\_key} function, which is called in both the usbmouse and usbkbd interrupt request (``irq'') functions. This function takes in a device, a keycode, and a value (generally with a mask) and reports back the state of the key to the system %\cite{input}
+Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python (which are both common computer languages for handling graphics) in order to call the program from the C code \textemdash \ the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap\_orig'' mapping file is  analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c). There are two ways in which the kernel can restrict the use of special characters on the keyboard. The first option is to edit the \texttt{use\_kbd\_keycode} array to match the ``Xmodmap\_restricted'' file (if the array declaration is made non-constant). The other option is to use the \texttt{input\_report\_key} function, which is called in both the usbmouse and usbkbd interrupt request (``irq'') functions. This function takes in a device, a keycode, and a value (generally with a mask) and reports back the state of the key to the system \cite{input}
 . In order to restrict the use of special characters, the driver can be modified to use this function to ensure that when a special character is typed on the keyboard, the signal is not reported to the system. The ability to use various mouse buttons must be restricted in a similar manner as the mouse buttons are defined in a header file and thus, the available buttons cannot be modified dynamically.
 
 After these improvements to the driver have been developed and tested and input from the usability tests has been incorporated into the captcha-enabled USB-HID driver, the last challenge to face is installation. In the proof of concept version developed for this paper, the bash script must be configured for the current user. Once a solution is developed to either install this script for every user of the system or to dynamically configure the script based on the current user, deployment would simply consist of including the necessary files and updated driver code in the next kernel release.
@@ -347,7 +385,7 @@ Each student on the team wrote about his or her own project responsibilities in 
 		\hline \textbf{Team Member} & \textbf{Extra Paper Sections} \\ \hline
 		Vince Fasburg & Threat Model, Technical Weaknesses \\ \hline
 		Bonnie Reiff &  Future Work \\ \hline
-		Josh Thomas & Overview, Previous Work, Approach  \\ \hline
+		Josh Thomas & Abstract, Intro, Related Work, Approach  \\ \hline
 	\end{tabular}
 \end{center}
 

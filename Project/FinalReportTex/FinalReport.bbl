@@ -20,6 +20,11 @@ Mouse over events with jbutton.
   http://stackoverflow.com/questions/15403909/mouse-over-events-with-jbutton,
   April 2015.
 
+\bibitem{input}
+Programming input drivers.
+\newblock https://www.kernel.org/doc/Documentation/input/input-programming.txt,
+  April 2015.
+
 \bibitem{pjrc}
 Ps2keybaod library.
 \newblock http://www.pjrc.com/teensy/td\_libs\_PS2Keyboard.html, April 2015.
