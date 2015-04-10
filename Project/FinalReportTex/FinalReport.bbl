@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{kbuild}
+Building external modules.
+\newblock https://www.kernel.org/doc/Documentation/kbuild/modules.txt, April
+  2015.
+
 \bibitem{ibm}
 Kernel apis, part 1: Invoking user-space applications from the kernel.
 \newblock http://www.ibm.com/developerworks/library/l-user-space-apps/, April
