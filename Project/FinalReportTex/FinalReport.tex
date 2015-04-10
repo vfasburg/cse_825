@@ -22,7 +22,7 @@
 \begin{document}
 
 \title{CSE 825: Project Final Report \\
-USB Keyboard and Mouse Spoofing\\
+CAPTCHA-Enabled HID Driver for Prevention of USB Keyboard and Mouse Spoofing\\
 }
 
 \author{Vince Fasburg, Bonnie Reiff, and Josh Thomas\\
@@ -86,7 +86,7 @@ Finally, at the 2014 Las Vegas Black Hat Security Conference, Karsten Nohl and J
 
 This project includes two main parts which include first exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project.
 
-For the first part of the project, the team programed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy}.
+For the first part of the project, the team programmed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy}.
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/Teensy}}
