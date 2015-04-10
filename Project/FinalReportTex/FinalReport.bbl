@@ -15,6 +15,16 @@ Mouse over events with jbutton.
   http://stackoverflow.com/questions/15403909/mouse-over-events-with-jbutton,
   April 2015.
 
+\bibitem{pjrc}
+Ps2keybaod library.
+\newblock http://www.pjrc.com/teensy/td\_libs\_PS2Keyboard.html, April 2015.
+
+\bibitem{pentest}
+Reverse shell cheat sheet.
+\newblock
+  http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet, March
+  2015.
+
 \bibitem{captcha}
 Wikipedia - captcha.
 \newblock http://en.wikipedia.org/wiki/CAPTCHA, April 2015.
