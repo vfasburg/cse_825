@@ -13,11 +13,11 @@
 
 \begin{document}
 
-\title{CAPTCHA-Enabled HID Driver for Prevention of USB Keyboard and Mouse Spoofing with Teensy Microcontroller\\}
+\title{CAPTCHA-Enabled HID Driver \\ for Prevention of USB Keyboard and Mouse Emulation\\}
 
 \author{Vince Fasburg, Bonnie Reiff, and Josh Thomas\\
 CSE 825: Computer and Network Security\\
-Dept of Computer Science and Engineering, Michigan State University\\
+Dept. of Computer Science and Engineering, Michigan State University\\
 East Lansing, MI, USA\\
 \{Vincent.Fasburg, Bonnie.Reiff, Josh.Thomas\}@ge.com\\
 }
@@ -157,7 +157,7 @@ This section describes the code developed to be loaded directly onto the Teensy 
 This is the simplest attack, which simply spawns a new terminal window (using the shortcut ctrl+alt+t) and would then enter the command \texttt{rm -rf *}. This attack would simply erase the entire hard drive of the victim's machine. Files deleted in this way may require time consuming or costly measures to be taken to restore the data, if it can be recovered at all. An even more effective version of this command would be to invoke a short script that wrote random data over the entire disk, making it extremely difficult or impossible to recover any overwritten data. In order to test this script, the real command is not used, but instead the line ``ALL FILES DELETED" is simply printed to the screen. This is used only for testing and to prevent the accidental deletion of a user's files. 
 
 \item[Steal Files] \hfill \\
-For an attacker who is not satisfied with simply deleting a victim's files, but would instead prefer to keep them for himself, this attack can be used to transfer any files an attacker wants to a server under the control of the attacker. For this attack, we set up a server, using an inexpensive home router, that can be accessed from anywhere over FTP. The Teensy program uses the built-in ftp tool to transfer any file containing the word ``secret" from the victim's computer to the IP address of this server.  If the attacker did not know exactly what files he would want from the victim, he could easily transfer a large number of files to this server, such as the victim's entire /home directory. If transferring a potentially large number of files, it may be useful to add commands to the Teensy code to camouflage the fact that the transfers are taking place, as they may take enough time to complete that the user realizes what is happening and cancels the transfer. The transfer could be camouflaged, for example, by minimizing the terminal window performing the transfers or continuously spawning new windows to confuse the user and buy time for the transfer to complete.
+For an attacker who is not satisfied with simply deleting a victim's files, but would instead prefer to keep them for himself, this attack can be used to transfer any files an attacker wants to a server under the control of the attacker. For this attack, we set up a server, using an inexpensive home router, that can be accessed from anywhere over FTP. The Teensy program uses the built-in FTP tool to transfer any file containing the word ``secret" from the victim's computer to the IP address of this server.  If the attacker did not know exactly what files he would want from the victim, he could easily transfer a large number of files to this server, such as the victim's entire \texttt{/home} directory. If transferring a potentially large number of files, it may be useful to add commands to the Teensy code to camouflage the fact that the transfers are taking place, as they may take enough time to complete that the user realizes what is happening and cancels the transfer. The transfer could be camouflaged, for example, by minimizing the terminal window performing the transfers or continuously spawning new windows to confuse the user and buy time for the transfer to complete.
 
 \item[Reverse Shell] \hfill \\
 A ``reverse shell" into a machine is a term used to describe a terminal on a remote computer which connects to a target machine, and is capable of executing commands in the target machine's environment. An attacker creating a reverse shell on a victim's machine will be able to execute arbitrary commands remotely, thus effectively putting the victim machine in complete control of the victim's machine. 
@@ -355,6 +355,12 @@ Since interpreted code cannot be run in kernel space, the captcha program would 
 
 After these improvements to the driver have been developed and tested and input from the usability tests has been incorporated into the captcha-enabled USB-HID driver, the last challenge to face is installation. In the proof of concept version developed for this paper, the bash script must be configured for the current user. Once a solution is developed to either install this script for every user of the system or to dynamically configure the script based on the current user, deployment would simply consist of including the necessary files and updated driver code in the next kernel release.
 
+\subsection{CAPTCHA Improvements}
+\label{section:futureworkcaptcha}
+
+\subsection{Driver Modificiation Improvements}
+\label{section:futureworkdriver}
+
 %------------------------------------------------------------------------- 
 
 \appendix 
@@ -369,9 +375,9 @@ The major project deliverables and testing of the end product were divided as fo
 	\begin{tabular}{ | c | c | }
 		\hline \textbf{Project Contribution} & \textbf{Team Member} \\ \hline
 		Teensy code attacks & Vince Fasburg \\ \hline
-		Captcha GUI & Josh Thomas \\ \hline
+		CAPTCHA GUI & Josh Thomas \\ \hline
 		Driver modification & Bonnie Reiff \\ \hline
-		Shell script & Vince Fasburg \\ \hline
+		Bash Shell script & Vince Fasburg \\ \hline
 		Udev rule research & Vince Fasburg \\ \hline
 		Final product testing against attacks & Bonnie Reiff \\ \hline
 		Usability testing & Josh Thomas \\ \hline
@@ -384,7 +390,7 @@ Each student on the team wrote about his or her own project responsibilities in 
 	\begin{tabular}{ | c | c | }
 		\hline \textbf{Team Member} & \textbf{Extra Paper Sections} \\ \hline
 		Vince Fasburg & Threat Model, Technical Weaknesses \\ \hline
-		Bonnie Reiff &  Future Work \\ \hline
+		Bonnie Reiff &  Conclusion \& Future Work \\ \hline
 		Josh Thomas & Abstract, Intro, Related Work, Approach  \\ \hline
 	\end{tabular}
 \end{center}
