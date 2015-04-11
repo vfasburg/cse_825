@@ -327,7 +327,7 @@
 \RequirePackage{floatsty}
 \floatstyle{IEEE}
 \setlength{\floatsep}{7pt plus 3pt minus 1.5pt}
-\setlength{\dblfloatsep}{10pt plus 3pt minus 1.5pt}
+\setlength{\dblfloatsep}{11pt plus 3pt minus 1.5pt}
 \setlength{\textfloatsep}{4pt plus 3pt minus 1.5pt}
 \setlength{\dbltextfloatsep}{2pt plus 3pt minus 1.5pt}
 \restylefloat{figure}

@@ -1,16 +1,13 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: FinalReport.aux
 The style file: ieee.bst
 Database file #1: bibfile.bib
-Repeated entry---line 108 of file bibfile.bib
- : {crenshaw
- :          ,
-I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in captcha
 Warning--to sort, need author or key in pentest
-Warning--to sort, need author or key in hover
 Warning--to sort, need author or key in kernel
 Warning--to sort, need author or key in kbuild
 Warning--to sort, need author or key in ibm
+Warning--to sort, need author or key in hover
 Warning--to sort, need author or key in pjrc
 Warning--to sort, need author or key in input
-(There was 1 error message)
+Warning--empty booktitle in crenshaw
+(There were 9 warnings)

@@ -3,18 +3,10 @@
 %
 %  $Authors: Vince Fasburg, Bonnie Reiff, Josh Thomas $
 %  $Date: 2015/04/13 $
-%  $Revision: 1.1 $
 %
 
 %\documentclass{ieee}
-\documentclass[pagenumbers]{ieee}
-
-%------------------------------------------------------------------------- 
-%
-% to produce page numbers, bottom centered, in the output. Default is 
-% no page numbers for camera-ready copy.
-%
-%------------------------------------------------------------------------- 
+\documentclass[pagenumbers]{ieee} 
 
 \usepackage{times}
 \usepackage{graphicx}
@@ -45,31 +37,39 @@ East Lansing, MI, USA\\
 
 Universal Serial Bus (USB) technology has become ubiquitous within our society since the turn of the twenty-first century. This type of connection has become the standard for computer peripherals such as keyboards, mice, printers, and external disk drives. USB has also become a common method of connecting devices such as smart phones and digital cameras to computers for power supply and media transfer. It is important, for this project, to note that all hardware attached to the computer via USB (and other protocols as well) requires an individual device driver in order to enable communication with the computer. Device drivers provide a software interface between the computer and the hardware, allowing the computer to access functions without knowing the exact details of the hardware. Typically, installation of a new device driver is the only obvious notification from a computer desktop that a USB device has been plugged into the computer; the operating system will not ask the user if they wish to allow the device.
 
-This project will focus on the emulation of Human Interface Devices (HIDs), specifically a keyboard and a mouse, through the use of a programmable microcontroller (the Teensy). More will be explained about how this emulation is possible in Section~\ref{section:teensy} (Teensy Attacks) of this report. The future findings of this project can be extended to other USB connected devices as well, as demonstrated by Karsten Nohl and Jakob Lell at the Black Hat USA Conference in 2014 when they reprogrammed a USB flash memory device to emulate HIDs \cite{nohl}. Through the use of keyboard commands and shell scripting, as well as mouse automation to interact with GUI elements, the microcontroller can essentially perform any task available for the current privilege level of the system within seconds, unbeknownst to to user. In order to launch these attacks, the malicious hacker need only plug in the USB device for a short amount of time. For example, this can be done if a user leaves a computer unlocked. Alternatively, the malicious hacker may get the user to plug the device in themselves as a form of social engineering, as users tend to have a trust that USB devices will not run any programs on their computers without their consent.
+This project will focus on the emulation of Human Interface Devices (HIDs), specifically a keyboard and a mouse, through the use of a programmable microcontroller (the Teensy). More will be explained about how this emulation is possible in Section~\ref{section:teensy}: Teensy Attacks of this report. The future findings of this project can be extended to other USB connected devices as well, as demonstrated by Karsten Nohl and Jakob Lell at the Black Hat USA Conference in 2014 when they reprogrammed a USB flash memory device to emulate HIDs \cite{nohl}. Through the use of keyboard commands and shell scripting, as well as mouse automation to interact with GUI elements, the microcontroller can essentially perform any task available for the current privilege level of the system within seconds, unbeknownst to to user. In order to launch these attacks, the malicious hacker need only plug in the USB device for a short amount of time. For example, this can be done if a user leaves a computer unlocked. Alternatively, the malicious hacker may get the user to plug the device in themselves as a form of social engineering, as users tend to have a trust that USB devices will not run any programs on their computers without their consent.
 
 This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, \texttt{rm -rf *} which would recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
-
-With this background in mind, the proposed project has the goal of answering three questions through both research and implementation:
-
-\begin{enumerate}
-\item \textit{What is the extent of attacks the can be performed using USB-HID emulation?}
-
-Initial research for this project has shown attacks on Windows and Apple PC operating systems that include actions such as setting up a reverse shell and changing the Domain Name System (DNS) server (see the ``Previous Work" section for full explanations and citations). The proposed project will explore how these attacks, as well as many others, can be implemented for a  Linux operating system using a programmable USB microcontroller. This suite of attacks will be also be used during the second portion of the project, in which defenses against these attacks will be explored.
-
-\item \textit{What are the existing defenses against HID emulation attacks?}
-
-This question is essentially answered in this project proposal in the ``Previous Work" section, but is included in the Problem Definition because it will be important to final report for the project. The goal of the project is for the team to design defenses against USB-HID emulation attacks, and thus it is important to know this information  in order to compare the approaches that have been taken on features such as feasibility, strength, etc.
-
-\item \textit{Can drivers be designed for USB mouses and keyboards to defend against HID emulation attacks?}
-
-This final question is the most essential and significant to the project as it will require designing and implementing a new concept for USB-HID devices, as well imagining the ways in which the newly implemented defenses can be weakened. The overall goal is to implement drivers for USB mouses and keyboards that have the ability to distinguish between emulated (malicious) devices and human-controlled devices. As will be explained in the following sections, the team has some initial ideas on how this can be done, but there are weaknesses to those ideas that will need to be overcome.
-
-\end{enumerate}
 
 %-------------------------------------------------------------------------
 
 \subsection{Motivation}
 \label{section:motivation}
+
+With this background in mind, the project has the goal of answering the following questions through both research and implementation:
+
+\begin{enumerate}
+\item \textit{What is the extent of attacks the can be performed using USB-HID emulation?}
+
+Initial research for this project showed attacks on Windows, Mac, and Linux operating systems that include actions such as setting up a reverse shell and changing the Domain Name System (DNS) server as described in Section~\ref{section:related}: Related Work. This paper will explain in detail how these attacks, as well as many others, can be implemented for a Linux based operating system using a programmable USB microcontroller as described in Section~\ref{section:teensy}: Teensy Attacks. This suite of attacks will be also be used during the second portion of the project, in which a defense against these attacks will be developed.
+
+\item \textit{What are the existing defenses against HID emulation attacks?}
+
+This question is answered in Section~\ref{section:related}: Related Work where other related work was researched prior to beginning the project. The goal of the project is for the team to design defenses against USB-HID emulation attacks, and thus it is important to know this information  in order to compare the approaches that have been taken on features such as feasibility and effectiveness.
+
+\item \textit{Can a driver be designed for USB mice and keyboards to defend against HID emulation attacks?}
+
+This question is the most essential and significant to the project as it will require designing and implementing a new concept for USB-HID devices, as well imagining the ways in which the newly implemented defenses can be weakened. The overall goal is to implement a driver for USB mice and keyboards that would allow the user to verify whether or not the device is valid.
+
+\item \textit{Will the driver be quick enough to defend against the HID emulation attacks?}
+
+This question is answered in Section~\ref{section:experimental}: Experimental Results when the driver is tested against the attacks loaded onto the Teensy microcontroller. The attacks programmed into the Teensy are very fast and run almost immediately. It is important to test whether the designed defense is able to load quick enough to stop the attacks.
+
+\item \textit{How will users react to the USB device verification?}
+
+This question is answered in Section~\ref{section:usability}: Usability Testing where external users (users not a part of the developement team) attempt to plug in a USB mouse or keyboard and then attempt to use the GUI without instruction or help. Even if the driver is able to stop the attack, if users are not able to completely understand the verification process, the computer could still be vulnerable to attacks after the user ``blindly'' verifies the device.
+
+\end{enumerate}
 
 %-------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ Finally, at the 2014 Las Vegas Black Hat Security Conference, Karsten Nohl and J
 
 This project includes two main parts which first is exploiting a few weaknesses in a computer system by creating a suite of attacks, then offering a solution to those weaknesses by developing a method to prevent future attacks. This section will describe the approach for each part of the project.
 
-For the first part of the project, the team programmed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy} (Teensy Attacks).
+For the first part of the project, the team programmed a Teensy microcontroller, shown in Figure~\ref{fig:Teensy}, to run a suite of attacks on a Linux operating system. The main idea was to emulate a USB keyboard and mouse with the Teensy so that the computer's Linux operating system would recognize the Teensy as a ``safe" device. This is easily achievable after installing the Arduino and Teensyduino software on the computer being used to program the Teensy using the development environment option to use a board that emulates a USB keyboard and mouse. Once the operating system believes that the Teensy is a safe device, the program can send keyboard or mouse commands to the operating system. The operating system should not notice anything different about these commands as compared to the commands coming from an actual keyboard or mouse. A broad range of attacks were created, including some which would require administrative privileges as described in further detail in Section~\ref{section:teensy}: Teensy Attacks.
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/Teensy}}
@@ -323,7 +323,7 @@ Usability testing is used in products that have a user-centered interaction in o
 \section{Technical Weaknesses}
 \label{section:weakness}
 
-This implementation of the keyboard and mouse restriction contains a vulnerability that allows a short window of time in which commands from the Teensy device were executed before the keyboard and mouse restrictions were imposed. In our testing, there was considerable variability in the number of keystrokes that could be executed by the Teensy before having the input restrictions imposed and the captcha GUI opened. In the best case, there was only enough time to spawn a terminal, and the captcha window appeared before any commands could be issued by the Teensy. However, on the computer that took the most time to open the captcha window, enough keystrokes were allowed through for the Teensy to invoke a short attack, such as ``rm -rf *".  This weakness is a limitation only of the particular implementation, and could be remedied with further work. See Section~\ref{section:conclusion} for a description of this improvement.
+This implementation of the keyboard and mouse restriction contains a vulnerability that allows a short window of time in which commands from the Teensy device were executed before the keyboard and mouse restrictions were imposed. In our testing, there was considerable variability in the number of keystrokes that could be executed by the Teensy before having the input restrictions imposed and the captcha GUI opened. In the best case, there was only enough time to spawn a terminal, and the captcha window appeared before any commands could be issued by the Teensy. However, on the computer that took the most time to open the captcha window, enough keystrokes were allowed through for the Teensy to invoke a short attack, such as ``rm -rf *".  This weakness is a limitation only of the particular implementation, and could be remedied with further work. See Section~\ref{section:conclusion}: Conclusion and Future Work for a description of this improvement.
 
 The threat model that was considered in this paper is concerned primarily with the unmodified Teensy microcontroller and similar HID emulation devices. However, it is possible to modify the Teensy microcontroller to connect it to a real keyboard, which will pass keystrokes through a real keyboard \cite{pjrc}. This makes it possible for an attacker to provide a keyboard with an embedded malicious device to a legitimate user. When the user plugs in the keyboard, the Teensy could wait for the user to complete the captcha (passing through the user's input as entered on the actual keyboard) and then execute a malicious script once the captcha has been completed. The solution described in this paper would not prevent an attack of this type.
 
@@ -346,7 +346,7 @@ In this paper, we examined the following three aspects of USB-HID emulation atta
 
 The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to render malicious Teensy-based attacks ineffective, while still allowing normal use of USB input devices, such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
 
-As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in Section~\ref{section:gui}, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to separate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
+As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in Section~\ref{section:gui}: Captcha GUI, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to separate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
 
 The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
 
