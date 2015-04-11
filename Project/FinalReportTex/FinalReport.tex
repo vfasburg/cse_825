@@ -21,11 +21,10 @@
 
 \begin{document}
 
-\title{CSE 825: Project Final Report \\
-CAPTCHA-Enabled HID Driver for Prevention of USB Keyboard and Mouse Spoofing\\
-}
+\title{CAPTCHA-Enabled HID Driver for Prevention of USB Keyboard and Mouse Spoofing with Teensy Microcontroller\\}
 
 \author{Vince Fasburg, Bonnie Reiff, and Josh Thomas\\
+CSE 825: Computer and Network Security\\
 Dept of Computer Science and Engineering, Michigan State University\\
 East Lansing, MI, USA\\
 \{Vincent.Fasburg, Bonnie.Reiff, Josh.Thomas\}@ge.com\\
@@ -44,11 +43,11 @@ East Lansing, MI, USA\\
 \section{Introduction}
 \label{section:intro}
 
-Universal Serial Bus (USB) technology has become ubiquitous within our society since the turn of the twenty-first century. This type of the connection has become the standard for computer peripherals such as keyboards, mouses, printers, and external disk drives. USB has also become a common method of connecting devices such as smart phones and digital cameras to computers for power supply and media transfer. It is important for this project to note that all hardware attached to the computer via USB (and other protocols as well) requires an individual device driver in order to enable communication with the computer. Device drivers provide a software interface between the computer and the hardware, allowing the computer to access functions without knowing the exact details of the hardware. Typically, installation of a new device driver is the only obvious notification from a computer desktop that a USB device has been plugged into the computer \textemdash{} the operating system will not ask the user if he or she wishes to allow the device.
+Universal Serial Bus (USB) technology has become ubiquitous within our society since the turn of the twenty-first century. This type of connection has become the standard for computer peripherals such as keyboards, mice, printers, and external disk drives. USB has also become a common method of connecting devices such as smart phones and digital cameras to computers for power supply and media transfer. It is important, for this project, to note that all hardware attached to the computer via USB (and other protocols as well) requires an individual device driver in order to enable communication with the computer. Device drivers provide a software interface between the computer and the hardware, allowing the computer to access functions without knowing the exact details of the hardware. Typically, installation of a new device driver is the only obvious notification from a computer desktop that a USB device has been plugged into the computer; the operating system will not ask the user if they wish to allow the device.
 
-This project will focus on the emulation of Human Interface Devices (HIDs), specifically a keyboard and a mouse, through the use of a programmable microcontroller (the Teensy). More will be explained about how this emulation is possible in the ``Approach" section of this report. The future findings of this project can be extended to other USB-connected devices as well, as demonstrated by Karsten Nohl and Jakob Lell at the Black Hat USA Conference in 2014 when they reprogrammed a USB flash memory device to emulate HIDs \cite{nohl}. Through use of keyboard commands and shell scripting, as well as mouse automation to interact with GUI elements, the microcontroller can essentially perform any task available for the current privilege level of the system within seconds, unbeknownst to to user. In order to launch these attacks, the malicious hacker need only plug in the USB device for a short amount of time. For example, this can be done if a user leaves a computer unlocked. Alternatively, the malicious hacker may get the user to plug the device in themselves, as users tend to have a trust that USB devices will not run any programs on their computers without their consent.
+This project will focus on the emulation of Human Interface Devices (HIDs), specifically a keyboard and a mouse, through the use of a programmable microcontroller (the Teensy). More will be explained about how this emulation is possible in Section~\ref{section:teensy} (Teensy Attacks) of this report. The future findings of this project can be extended to other USB connected devices as well, as demonstrated by Karsten Nohl and Jakob Lell at the Black Hat USA Conference in 2014 when they reprogrammed a USB flash memory device to emulate HIDs \cite{nohl}. Through the use of keyboard commands and shell scripting, as well as mouse automation to interact with GUI elements, the microcontroller can essentially perform any task available for the current privilege level of the system within seconds, unbeknownst to to user. In order to launch these attacks, the malicious hacker need only plug in the USB device for a short amount of time. For example, this can be done if a user leaves a computer unlocked. Alternatively, the malicious hacker may get the user to plug the device in themselves as a form of social engineering, as users tend to have a trust that USB devices will not run any programs on their computers without their consent.
 
-%This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, ``rm -rf *'' which would recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
+This class of attacks is potentially very dangerous because once the program has the ability to the use the keyboard and mouse, a Linux terminal can be opened to do almost anything to the system, for example, \texttt{rm -rf *} which would recursively wipes all of the files from the current directory on the drive. The program could easily run without the user being aware since a terminal window could be opened up and immediately minimized while the program is still running. After only a few seconds, the program could be finished running and have the terminal window closed all before the user realizes anything is wrong.
 
 With this background in mind, the proposed project has the goal of answering three questions through both research and implementation:
 
@@ -76,6 +75,8 @@ This final question is the most essential and significant to the project as it w
 
 \subsection{Organization}
 \label{section:organization}
+
+The paper is organized as follows. Section~\ref{section:related} starts by reviewing the background and related work that has been completed and documented by other individuals. Section~\ref{section:threat} then defines the threat model and the reason for protection against HID emulation attacks. Section~\ref{section:design} gives an overview of the design of the software developed and provides a flow chart for how all of the software is working together. Next, Section~\ref{section:technical} describes the details of the implementation of the teensy attacks as well as the kernel and bash script development and the captcha GUI. Next, Section~\ref{section:experimental} describes the testing that was completed with the driver and teensy attacks and Section~\ref{section:usability} describes the usability testing that was completed with external users. Finally, the paper is concluded with Section~\ref{section:weakness} discussing some of the vulnerabilities behind the driver implementation and Section~\ref{section:conclusion} discussing future work that could be completed to improve the HID emulation attack protection.
 
 %------------------------------------------------------------------------- 
 
@@ -253,7 +254,6 @@ The bash script blocks when the captcha GUI is spawned, and waits for the GUI to
 In order to make these commands effective on the current user, while running a script from kernel space, several additional steps are needed. Permissions must be explicitly given for the local user to access the X server, and the DISPLAY variable must be exported to give display access to the script.  Every command in the script that interacts with an I/O device needs to be be executed through the local user using the \texttt{sudo -u} command. 
 
 These setup steps are also needed if the script is to be run from a udev rule, which can be used to execute a script whenever a certain category of USB device is inserted. This was the original method by which the script was invoked, until it was proven to be feasible to run the script directly from the USB driver within the kernel.
-
 
 %------------------------------------------------------------------------- 
 
