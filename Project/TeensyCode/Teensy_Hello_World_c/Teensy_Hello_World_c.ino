@@ -10,7 +10,7 @@ int count = 0;
 
 void setup() {
   Serial.begin(9600);
-  delay(1000);
+  delay(2000);
 }
 
 void loop() {
@@ -34,8 +34,7 @@ void loop() {
   delay(1000);
   
   // Your computer will receive these characters from a USB keyboard.
-  Keyboard.print("echo All Files Deleted "); 
-  Keyboard.println(count);
+  Keyboard.println("echo All Files Deleted "); 
 
-  delay(5000);
+  delay(30000);
 }

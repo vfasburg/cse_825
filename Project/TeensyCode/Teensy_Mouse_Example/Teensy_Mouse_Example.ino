@@ -1,12 +1,12 @@
   
 void setup() {
   Serial.begin(9600);
-  delay(1000);
+  delay(2000);
 }
 
 void loop() {
 int i;
-for(i = 0; i < 15; i++) {
+for(i = 0; i < 50; i++) {
   usb_mouse_move(-127,-127,0);
 }
 usb_mouse_move(30,60,0);
