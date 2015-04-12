@@ -30,6 +30,8 @@ East Lansing, MI, USA\\
 \section{Abstract}
 \label{section:abstract}
 
+As USB devices have primary become the standard for computer peripherals, the security and protection of the computers that they are being connected to is a concern. Attempts have been made to develop a mechanism for the authentication of some USB devices, but much less attention has been paid to the authentication of USB human interface devices (HIDs). To address this problem, we have made a modification to the Linux driver responsible for USB based mice and keyboards. This modification includes first disabling key features of the device which would make an attack easier such as clicking of the mouse and the use of special keys on the keyboard such as \texttt{Ctrl} and \texttt{Alt}. Next, an authentication GUI is displayed which shows a captcha to be completed by either the newly connected mouse or keyboard. In order to test the driver modification and to show the extent of potential attacks, we also created a suite of attacks using the Teensy microcontroller. Our evaluation results show that the driver modification is effective is preventing the attacks, however in some cases the Teensy was able to just open a Terminal, but not perform the malicious command, before the captcha program locked and grabbed focus.
+
 %-------------------------------------------------------------------------
 
 \section{Introduction}
@@ -372,7 +374,7 @@ After these improvements to the driver have been developed and tested and input 
 
 \appendix 
 
-%\newpage% -- remove this comment if we want the Appendix and References on a new page
+\newpage% -- remove this comment if we want the Appendix and References on a new page
 
 \section{Appendix: Team Contributions}
 
