@@ -1,5 +1,7 @@
 # README created by Vince Fasburg, Bonnie Reiff, and Josh Thomas #
 # for Michigan State University, CSE 825 #
 
-USBHID Driver Code Source
+[ USBHID Driver Code Source ]
+
+The source code for the driver modification portion of the captcha-enabled HID driver was modified from a the latest stable baseline Linux kernel (version 3.19.3), obtained from https://www.kernel.org. See the USB_HID_Driver_README for the names of all files from this baseline that were modified as part of this project and notes on the nature of the modifications.
 

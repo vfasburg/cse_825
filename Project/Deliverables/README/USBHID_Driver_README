@@ -1,7 +1,7 @@
 # README created by Vince Fasburg, Bonnie Reiff, and Josh Thomas #
 # for Michigan State University, CSE 825 #
 
-(1) Necessary team created files: (all of these files should be copied to /usr/local/bin)
+(1) Necessary team created files: copy all of these files located under Deliverables/Source to /usr/local/bin
 -----------------------------------------------------------------------------------------
 | Filename		   | Necessary Modification Notes				|
 -----------------------------------------------------------------------------------------
@@ -11,13 +11,13 @@
 -----------------------------------------------------------------------------------------
 | Xmodmap_restricted 	   |								|
 -----------------------------------------------------------------------------------------
-| usb_add.sh		   | Replace all instances of "bonnie" with your username	|
+| usb_add.sh		   | Replace all instances of "<username>" with your username	|
 -----------------------------------------------------------------------------------------
 
 (2) Obtain the latest stable version of the Linux Kernel from https://www.kernel.org (version used for project: 3.19.x)
     and extract the code to any known location
 
-(3) Overwrite the following files with the delivered files (found at cse_825/Project/drive_modification/source) at the specificed location (where linux-3.19 is the root of the Linux kernel code): /linux-3.19/drivers/hid/usbhid
+(3) Overwrite the following files with the files found in Deliverables/Source/USBHID_Driver at the specificed location (where linux-3.19 is the root of the extracted Linux kernel code): /linux-3.19/drivers/hid/usbhid
 -------------------------------------------------------------------------------------------------------------------------
 | Filename		   | Team Modification Notes									|
 -------------------------------------------------------------------------------------------------------------------------
@@ -35,12 +35,12 @@
 
 (6) From /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid, excute the following command: "lsmod | grep '^usbhid'"
     If the command returns a result, then execute the command "sudo rmmod usbhid.ko" from the same directory, otherwise continue on to the next step.
-    Note: when the usbhid driver is uninstalled, all HID devices will cease to work
+    Note: when the usbhid driver is uninstalled, all USB HID devices will cease to work
 
 (6) Copy the newly built usbhid.ko file to /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid
     Note: you can overwrite the usbhid.ko file currently located at that location, but the suggestion is to save the original ko file under a different name and then move this file to the specified directory
 
 (7) From /lib/modules/$(uname -r)/kernel/drivers/hid/usbhid, excute the following command: sudo insmod usbhid.ko
 
-(8) When the module finishes installing, the captcha GUI should appear. To further confirm module installation, you can execute "lsmod | grep '^usbhid'", ensure that the command returns a result, and check that the usbhid Module has a size of 52672.
+(8) When the module finishes installing, the captcha GUI should appear (if all of the above steps were executed correctly). To further confirm module installation, you can execute "lsmod | grep '^usbhid'", ensure that the command returns a result, and check that the usbhid module has a size of 52672.
 
