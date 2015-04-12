@@ -5,3 +5,8 @@
 
 The source code for the driver modification portion of the captcha-enabled HID driver was modified from a the latest stable baseline Linux kernel (version 3.19.3), obtained from https://www.kernel.org. See the USB_HID_Driver_README for the names of all files from this baseline that were modified as part of this project and notes on the nature of the modifications.
 
+[ Teensy Microcontroller Code Source ]
+
+The Teensy code for the "Reverse shell" attack was adapted from a perl script (the contents of the script re-written in Arduino code to be executed by the Teensy) which was found on the web at http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet. This is referenced directly in the applicable section of the final report.
+
+With the execption of the code listed above, all provided source code was created entirely by the team members.

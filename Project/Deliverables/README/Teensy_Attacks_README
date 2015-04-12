@@ -1,2 +1,19 @@
-to compile & program the Teensy:
-I discovered that once you have everything set up properly, all you need to do is execute your arduino program. You can then open a .ino file from the TeensyCode library (here). Press the "verify" (checkbox) button on the arduino app, and the TeensyLoader should automatically pop up.  Then just insert the teensy and immediately press the button on the teensy and the program will load. 
+# README created by Vince Fasburg, Bonnie Reiff, and Josh Thomas #
+# for Michigan State University, CSE 825 #
+
+These instructions describe how to compile code for the Teensy microcontroller, load the 
+binaries onto a Teensy device, and execute the program from the device. These instructions assume that the following programs have been installed:
+	1. Arduino 1.0.5
+	2. Teensyduino 1.22
+	3. Teensy Loader Application 1.15
+Instructions for the downloading and installation of these programs can all be found at http://www.pjrc.com/teensy/tutorial.html. 
+
+1. Run the Arduino 1.0.5 program
+2. In the "Tools->Board:" menu, select the board "Teensy 3.1" 	
+3. Open the .ino file of interest in the Arduino program, through the file menu.
+4. Press the "verify" button and ensure that the compilation is successful
+5. Insert the Teensy microcontroller into a USB port. Immediately press the button on the Teensy to prevent execution of any program that might already be loaded on the device.
+6. Press the "Upload" button in the Arduino program to load the program into the Teensy
+7. Disconnect the Teensy. 
+8. Reconnect the Teensy, and the loaded program will run automatically.
+
