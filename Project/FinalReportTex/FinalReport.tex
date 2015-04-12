@@ -51,13 +51,13 @@ This class of attacks is potentially very dangerous because once the program has
 With this background in mind, the project has the goal of answering the following questions through both research and implementation:
 
 \begin{enumerate}
-\item \textit{What is the extent of attacks the can be performed using USB-HID emulation?}
-
-Initial research for this project showed attacks on Windows, Mac, and Linux operating systems that include actions such as setting up a reverse shell and changing the Domain Name System (DNS) server as described in Section~\ref{section:related}: Related Work. This paper will explain in detail how these attacks, as well as many others, can be implemented for a Linux based operating system using a programmable USB microcontroller as described in Section~\ref{section:teensy}: Teensy Attacks. This suite of attacks will be also be used during the second portion of the project, in which a defense against these attacks will be developed.
-
 \item \textit{What are the existing defenses against HID emulation attacks?}
 
 This question is answered in Section~\ref{section:related}: Related Work where other related work was researched prior to beginning the project. The goal of the project is for the team to design defenses against USB-HID emulation attacks, and thus it is important to know this information  in order to compare the approaches that have been taken on features such as feasibility and effectiveness.
+
+\item \textit{What is the extent of the attacks that can be performed using USB-HID emulation?}
+
+Initial research for this project showed attacks on Windows, Mac, and Linux operating systems that include actions such as setting up a reverse shell and changing the Domain Name System (DNS) server as described in Section~\ref{section:related}: Related Work. This paper will explain in detail how these attacks, as well as many others, can be implemented for a Linux based operating system using a programmable USB microcontroller as described in Section~\ref{section:teensy}: Teensy Attacks. This suite of attacks will be also be used during the second portion of the project for testing purposes, in which a defense against these attacks will be developed.
 
 \item \textit{Can a driver be designed for USB mice and keyboards to defend against HID emulation attacks?}
 
@@ -78,7 +78,7 @@ This question is answered in Section~\ref{section:usability}: Usability Testing 
 \subsection{Organization}
 \label{section:organization}
 
-The paper is organized as follows. Section~\ref{section:related} starts by reviewing the background and related work that has been completed and documented by other individuals. Section~\ref{section:threat} then defines the threat model and the reason for protection against HID emulation attacks. Section~\ref{section:design} gives an overview of the design of the software developed and provides a flow chart for how all of the software is working together. Next, Section~\ref{section:technical} describes the details of the implementation of the teensy attacks as well as the kernel and bash script development and the captcha GUI. Next, Section~\ref{section:experimental} describes the testing that was completed with the driver and teensy attacks and Section~\ref{section:usability} describes the usability testing that was completed with external users. Finally, the paper is concluded with Section~\ref{section:weakness} discussing some of the vulnerabilities behind the driver implementation and Section~\ref{section:conclusion} discussing future work that could be completed to improve the HID emulation attack protection.
+This paper is organized as follows. Section~\ref{section:related} starts by reviewing the background and related work that has been completed and documented by other individuals. Section~\ref{section:threat} then defines the threat model and the reason for protection against HID emulation attacks. Section~\ref{section:design} gives an overview of the design of the software developed and provides a flow chart for how all of the software is working together. Next, Section~\ref{section:technical} describes the details of the implementation of the teensy attacks as well as the kernel and bash script development and the captcha GUI. Next, Section~\ref{section:experimental} describes the testing that was completed with the driver and teensy attacks and Section~\ref{section:usability} describes the usability testing that was completed with external users. Finally, the paper is concluded with Section~\ref{section:weakness} discussing some of the vulnerabilities behind the driver implementation and Section~\ref{section:conclusion} discussing future work that could be completed to improve the HID emulation attack protection.
 
 %------------------------------------------------------------------------- 
 
