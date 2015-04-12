@@ -205,17 +205,13 @@ For this attack, the malicious device is recognized by a computer as both a keyb
 \subsection{Kernel}
 \label{section:kernel}
 
-The driver modification development for this paper was done on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred using the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}, version 3.19.3. 
-
-The work for the driver modification was focused entirely within the \texttt{linux-3.19/drivers/hid/usbhid} subdirectory and made use of the header files at \texttt{linux-3.19/include/linux}. The appropriate drivers for the project were discovered by browsing the various subfolders of the ``drivers'' directory of the linux source code and by subsequently using Linux system logging functionality while connecting and disconnecting a USB-HID device to test that the appropriate drivers were found (see the section below on the \texttt{call\_usermodehelper} function for more detail). Through this process, the ``usbhid", ``usbmouse", and ``usbkbd" drivers were discovered. For the scope of this project, only the usbhid driver needed to be modified, but the code for the usbmouse and usbkbd drivers is important to understand for possible future improvements to this defense against USB-HID emulation attacks.
+The driver modification for this project was developed on a computer running Ubuntu 14.04 LTS with a 3.13.0-32 kernel release. The final testing of the new driver occurred using the 3.13.0-46 kernel release due to a software update. The baseline code used for the driver modification work was the latest stable kernel found on The Linux Kernel Archives website \cite{kernel}, version 3.19.3. Although all USB-HID related drivers in the kernel (``usbhid", ``usbmouse", and ``usbkbd") contain relevant code, for the scope of this project, only the usbhid driver needed to be modified.
 
 \subsubsection{Initial Driver Compilation}
 
-In order to get the driver source code in the \texttt{drivers/hid/usbhid} directory to compile initially after download, several modifications had to be made to the provided Makefile, which uses the ``kbuild'' Linux kernel build system. First, Makefile targets ``all'' and ``clean'' (using the syntax for building an external module) were added. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. The ``\texttt{-C}'' option in both of these targets indicates that the path to the kernel source is being provided \textemdash \ the \texttt{make} program changes to this directory during the build process and then changes back to the local directory when the process is complete. The \texttt{KVERSION} variable expands to the current kernel release. For example, if \texttt{KVERSION = 3.13.0-46-generic}, the kernel version is 3.13.0 and ``46'' refers to the release number determined by the patches applied during software updates. The ``\texttt{M=<directory>}'' option is what indicates that an external module is being built and provides the absolute path to the module. Thus, this Makefile needs to be in the same directory as the usbhid driver code \cite{kbuild}.
+In order to get the driver source code in the \texttt{drivers/hid/usbhid} directory to compile initially after download, Makefile targets for ``all" and ``clean" had to be made to the provided Makefile, which uses the ``kbuild'' Linux kernel build system. The ``all'' target is set to \texttt{make -C lib/modules/\$(KVERSION)/build M=\$(PWD) modules}, where \texttt{KVERSION = \$(shell uname -r)}. Similarly, the ``clean'' target is set to \texttt{make -C /lib/modules/\$(KVERSION)/build M=\$(PWD) clean}. The ``\texttt{-C}'' option in both of these targets indicates that the path to the kernel source is being provided \textemdash \ the \texttt{make} program changes to this directory during the build process and then changes back to the local directory when the process is complete. The \texttt{KVERSION} variable expands to the current kernel release. For example, if \texttt{KVERSION = 3.13.0-46-generic}, the kernel version is 3.13.0 and ``46'' refers to the release number determined by the patches applied during software updates. The ``\texttt{M=<directory>}'' option is what indicates that an external module is being built and provides the absolute path to the module. Thus, this Makefile needs to be in the same directory as the usbhid driver code \cite{kbuild}.
 
 During project development, it was noted that there is a consequence to using the \texttt{uname} program in the Makefile to determine the current kernel release \textemdash \ loadable kernel modules compiled under a specific kernel release can only be installed on that release. Therefore, when the kernel is patched and a new release is created, the driver must be recompiled if the user wishes to include the modified driver in the newest kernel release.
-
-After adding the targets, for any files in the directory that were still producing errors due to unrecognized information from the linux header files when the \texttt{make} program was executed, the appropriate code was copied and pasted locally to eliminate compilation errors.
 
 \subsubsection{\texttt{call\_usermodehelper} Function}
 
@@ -227,37 +223,19 @@ Many common C header files do not exist in the kernel development environment an
 \item \textit{int wait}, \texttt{UMH\_WAIT\_EXEC} to wait for the user space application to be invoked before continuing, \texttt{UMH\_WAIT\_PROC} to wait for the entire process (including the application running in user space) to complete, or \texttt{UMH\_NO\_WAIT} to include no wait time
 \end{itemize}
 
-The newly implemented usage of this function in the usbhid driver is shown in Figure~\ref{fig:usermodehelper_code}.
-
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/usermodehelper_code_resize}}
    \caption{\texttt{call\_usermodehelper} additions to the \texttt{usbhid\_open} function}
    \label{fig:usermodehelper_code}
 \end{figure}
 
-The appropriate function to modify was then determined using the system log (found at \texttt{/var/log/syslog}). The text logged by the unmodified driver(s) upon insertion and removal of a USB-HID device was searched within the \texttt{drivers} directory of the source to determine a subset of files and functions to test that pertained to the connection and disconnection of the device. System logging calls were then added to this set of functions to choose the exact driver modification location \textemdash \ the \texttt{usbhid\_open} function in hid-core.c, located in the \texttt{drivers/hid/usbhid} directory.
-
-First, only the \texttt{argv\_logger} and \texttt{envp} variables shown above in Figure~\ref{fig:usermodehelper_code} were added, along with the call to the function. The \texttt{envp} is a null terminated array that defines the execution environment for the user space application. The \texttt{argv\_logger} array indicates that the system logger program should be called with one argument \textemdash \ the text to write to the log file. The result of this when any USB-HID device is plugged into the computer is the ``logger'' line displayed in  Figure~\ref{fig:syslog}. Note that the call to \texttt{call\_usermodehelper} uses a wait time of \texttt{UMH\_WAIT\_EXEC}, meaning that the code blocks until the program is executed and then continues.
+The newly implemented usage of this function in the usbhid driver is shown in Figure~\ref{fig:usermodehelper_code}. The appropriate function to modify, the \texttt{usbhid\_open} function in hid-core.c, was determined via analysis of the text logged in the system log (found at \texttt{/var/log/syslog}) by the unmodified driver(s) upon insertion and removal of a USB-HID device. The \texttt{envp} is a null terminated array that defines the execution environment for the user space application. The \texttt{argv\_logger} array indicates that the system logger program should be called with one argument \textemdash \ the text to write to the log file. The result of this when any USB-HID device is plugged into the computer is the ``logger'' line displayed in  Figure~\ref{fig:syslog}. This was used to indicate to the developers that the \texttt{usbhid\_open} function was being called and executed appropriately. Note that the call to \texttt{call\_usermodehelper} uses a wait time of \texttt{UMH\_WAIT\_EXEC}, meaning that the code blocks until the program is executed and then continues. Similarly, the \texttt{argv\_shell\_usbhid} array is used to call the bash shell script developed for the project (to be explained in Section~\ref{section:bash}). The bash program is passed two arguments, ``\texttt{-c}'' and the path to the shell script. The \texttt{-c} option indicates that the shell script should be treated as an executable command, rather than a positional parameter to a command.
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/syslog_resize}}
    \caption{System log showing the \texttt{usbhid\_open} function call}
    \label{fig:syslog}
 \end{figure}
-
-Later, after the bash script, described in Section~\ref{section:bash} (Bash Script), was developed, the \texttt{argv\_shell\_usbhid} array and call to the bash program were added. The bash program is passed two arguments, ``\texttt{-c}'' and the path to the shell script. The \texttt{-c} option indicates that the shell script should be treated as an executable command, rather than a positional parameter to a command. The previously used call to the system logged was kept to ensure that the \texttt{usbhid\_open} function was being called appropriately in the case that the bash script did not execute correctly. 
-
-\subsubsection{Installation of Modules}
-
-When the kernel source files are compiled in local user space, they produce both regular C object files (.o) and loadable kernel module files (.ko). The following steps then need to be taken to install the new versions of the modules. These steps were scripted as part of the project in order to allow for faster installation and test of changes:
-
-\begin{enumerate}
-\item Uninstall the old version of the module at \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid} using the \texttt{sudo rmmod usbhid.ko} command
-\item Copy the new module from local user space to \texttt{/lib/modules/\$(uname -r)/kernel/ drivers/hid/usbhid}
-\item Insert the new module using the \texttt{sudo insmod usbhid.ko} command
-\end{enumerate} 
-
-To verify the insertion or removal of a module, the \texttt{lsmod} command can be used to show the status of the modules in the Linux kernel. This program also shows the size of each module (which is helpful for distinguishing between different versions), as well as what other modules are dependent on it.
 
 %------------------------------------------------------------------------- 
 
