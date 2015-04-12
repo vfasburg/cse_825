@@ -10,3 +10,9 @@ The source code for the driver modification portion of the captcha-enabled HID d
 The Teensy code for the "Reverse shell" attack was adapted from a perl script (the contents of the script re-written in Arduino code to be executed by the Teensy) which was found on the web at http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet. This is referenced directly in the applicable section of the final report.
 
 With the execption of the code listed above, all provided source code was created entirely by the team members.
+
+[ Java Captcha GUI Code Source ]
+
+The Java code for the Captcha GUI was entirely composed by the team with the assistance of a few online resources dealing with Java Swing.
+
+All resources are listed in the resources section of the report and sited in the captcha GUI section
