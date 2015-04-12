@@ -211,7 +211,7 @@ Many common C header files do not exist in the kernel development environment an
 The newly implemented usage of this function in the usbhid driver is shown in Figure~\ref{fig:usermodehelper_code}.
 
 \begin{figure}[H]
-   \center{\includegraphics[width=1\linewidth]{Pictures/usermodehelper_code}}
+   \center{\includegraphics[width=1\linewidth]{Pictures/usermodehelper_code_resize}}
    \caption{\texttt{call\_usermodehelper} additions to the \texttt{usbhid\_open} function}
    \label{fig:usermodehelper_code}
 \end{figure}
@@ -221,7 +221,7 @@ The appropriate function to modify was then determined using the system log (fou
 First, only the \texttt{argv\_logger} and \texttt{envp} variables shown above in Figure~\ref{fig:usermodehelper_code} were added, along with the call to the function. The \texttt{envp} is a null terminated array that defines the execution environment for the user space application. The \texttt{argv\_logger} array indicates that the system logger program should be called with one argument \textemdash \ the text to write to the log file. The result of this when any USB-HID device is plugged into the computer is the ``logger'' line displayed in  Figure~\ref{fig:syslog}. Note that the call to \texttt{call\_usermodehelper} uses a wait time of \texttt{UMH\_WAIT\_EXEC}, meaning that the code blocks until the program is executed and then continues.
 
 \begin{figure}[H]
-   \center{\includegraphics[width=1\linewidth]{Pictures/syslog}}
+   \center{\includegraphics[width=1\linewidth]{Pictures/syslog_resize}}
    \caption{System log showing the \texttt{usbhid\_open} function call}
    \label{fig:syslog}
 \end{figure}
@@ -346,20 +346,27 @@ In this paper, we examined the following three aspects of USB-HID emulation atta
 
 The resulting research produced Ubuntu attacks written for the Teensy USB-based microcontroller development system, as well as a modification to the ``usbhid'' Linux driver that has been proven to render malicious Teensy-based attacks ineffective, while still allowing normal use of USB input devices, such as the mouse and keyboard. The driver modification in its current state runs a bash shell script to restrict keyboard and mouse functionality until a team developed captcha GUI (written in Java) is completed successfully.
 
-As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification. Once such improvement would be to use a more advanced captcha. As stated in Section~\ref{section:gui}: Captcha GUI, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to separate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
-
-The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
-
-Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python (which are both common computer languages for handling graphics) in order to call the program from the C code \textemdash \ the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap\_orig'' mapping file is  analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c). There are two ways in which the kernel can restrict the use of special characters on the keyboard. The first option is to edit the \texttt{use\_kbd\_keycode} array to match the ``Xmodmap\_restricted'' file (if the array declaration is made non-constant). The other option is to use the \texttt{input\_report\_key} function, which is called in both the usbmouse and usbkbd interrupt request (``irq'') functions. This function takes in a device, a keycode, and a value (generally with a mask) and reports back the state of the key to the system \cite{input}
-. In order to restrict the use of special characters, the driver can be modified to use this function to ensure that when a special character is typed on the keyboard, the signal is not reported to the system. The ability to use various mouse buttons must be restricted in a similar manner as the mouse buttons are defined in a header file and thus, the available buttons cannot be modified dynamically.
-
-After these improvements to the driver have been developed and tested and input from the usability tests has been incorporated into the captcha-enabled USB-HID driver, the last challenge to face is installation. In the proof of concept version developed for this paper, the bash script must be configured for the current user. Once a solution is developed to either install this script for every user of the system or to dynamically configure the script based on the current user, deployment would simply consist of including the necessary files and updated driver code in the next kernel release.
+As this was a proof of concept, in addition to fixing the technical weaknesses explained Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification.
 
 \subsection{CAPTCHA Improvements}
 \label{section:futureworkcaptcha}
 
+As stated in Section~\ref{section:gui}: Captcha GUI, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to separate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}.
+
 \subsection{Driver Modificiation Improvements}
 \label{section:futureworkdriver}
+
+The other two suggested improvements for future work revolve around the concept of containing all elements of the USB-HID validation to ``kernel space'', from where the shell script is initially called. Kernel space is a privileged area of virtual memory reserved for the operating system and most device drivers, whereas user space allows application software to run. Even though the shell script described in the ``Bash Script'' section of this paper is called from device driver code (kernel space), the shell script actually executes in user space, which is not preferable. In order to contain all shell script functionality within kernel space, the restriction of keyboard and mouse functions and the execution of the captcha program would both need to be converted to C code. 
+
+Since interpreted code cannot be run in kernel space, the captcha program would need to be ported to a language other than Java or Python (which are both common computer languages for handling graphics) in order to call the program from the C code \textemdash \ the program would most likely still be called using the \texttt{call\_usermodehelper} function described in the ``Kernel'' section of this paper. In regards to the restriction of keyboard and mouse functions, structures exist in the code for the ``usbmouse'' and ``usbkbd'' drivers (unmodified in the scope of work for this project) that can be modified in a similar manner to how the functionality of these two devices was modified in the shell script. For the available keys on the keyboard, the ``Xmodmap\_orig'' mapping file is  analogous to the \texttt{usb\_kbd\_keycode} array of 256 \texttt{char} types (found in usbkbd.c). There are two ways in which the kernel can restrict the use of special characters on the keyboard. The first option is to edit the \texttt{use\_kbd\_keycode} array to match the ``Xmodmap\_restricted'' file (if the array declaration is made non-constant). The other option is to use the \texttt{input\_report\_key} function, which is called in both the usbmouse and usbkbd interrupt request (``irq'') functions. This function takes in a device, a keycode, and a value (generally with a mask) and reports back the state of the key to the system \cite{input}. In order to restrict the use of special characters, the driver can be modified to use this function to ensure that when a special character is typed on the keyboard, the signal is not reported to the system. The ability to use various mouse buttons must be restricted in a similar manner as the mouse buttons are defined in a header file and thus, the available buttons cannot be modified dynamically.
+
+TODO: add the restriction of functionality for only the device(s) that were inserted
+
+\subsection{Driver Installation}
+\label{section:installation}
+
+After these improvements to the driver have been developed and tested and input from the usability tests has been incorporated into the captcha-enabled USB-HID driver, the last challenge to face is installation. In the proof of concept version developed for this paper, the bash script must be configured for the current user. Once a solution is developed to either install this script for every user of the system or to dynamically configure the script based on the current user, deployment would simply consist of including the necessary files and updated driver code in the next kernel release.
+
 
 %------------------------------------------------------------------------- 
 
