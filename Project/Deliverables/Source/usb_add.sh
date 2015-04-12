@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Created by Vince Fasburg, <username> Reiff, and Josh Thomas
+# Created by Vince Fasburg, Bonnie Reiff, and Josh Thomas
 # for Michigan State University, CSE 825
 
 # Script setup code
