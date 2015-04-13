@@ -1,15 +1,21 @@
 # README created by Vince Fasburg, Bonnie Reiff, and Josh Thomas #
 # for Michigan State University, CSE 825 #
 
-# Teensy Attack Testing & Driver Testing:
+[ Teensy Attack Testing & Driver Testing ]
 
 The functionality of the teensy attacks was tested manually by members of the development team. The attacks were performed on development machines that were not equipped with the modified drivers, as to ensure that the attacks were capable of performing the malicious act that they were designed to perform. The functionality and design/test of these attacks is covered more thoroughly in the final report, Section 7.1: Teensy Attacks.
 
-Testing of the modified driver/bash script was similarly completed manually during development, by the development team. All of the following scenarios were tested:
-	1. Inserting a malicious HID - Captcha window appears and device input is rejected.
-	2. Inserting a legitimate HID - Captcha window appears and can be completed. Keybaord and mouse is appropriately restricted while device is being validated. Correct captcha (but not incorrect captcha) causes the window to close, and the devices to become unrestricted.
-	3. Inserting one of several non-HID USB devices - The driver is not invoked when any other device, such as a flash drive, is inserted. 
+Testing of the modified driver/Bash script was similarly completed manually during development, by the development team. All of the following scenarios were tested. For more detail on the results of the testing, see the final report, Section 8: Experimental Results.
 
-# Usability Testing
+	1. Scenario: Inserting a malicious (emulated) HID
+       Result  : Captcha window appears causing the malicious attack to be unsuccessful
+	   
+	2. Scenario: Inserting a legitimate HID
+       Result  : Captcha window appears. Keyboard and mouse functionalities are appropriately restricted while device is being validated. Incorrect captcha displays an error to the user and generates a new captcha for the user to attempt. Correct captcha input causes the window to close, and the peripheral devices to become unrestricted.
+	   
+	3. Scenario: Inserting one of several non-HID USB devices
+       Result  : The driver is not invoked when any other device, such as a flash drive, is inserted. Captcha window does not appear.
 
-Usability testing focused on input from 6 volunteers who were not members of the development team. These users were given instructions to insert and use various devices without any training from the development team. Participants provided feedback on their experiences, which is discussed in the final report, Section 9: Usability Testing.
+[ Usability Testing ]
+
+Usability testing focused on input from six volunteers who were not members of the development team. These users were given instructions to insert and use various devices without any training from the development team. Participants provided feedback on their experiences, which is discussed in the final report, Section 9: Usability Testing.
