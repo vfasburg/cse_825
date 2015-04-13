@@ -13,7 +13,7 @@
 
 \begin{document}
 
-\title{CAPTCHA-Enabled HID Driver \\ for Prevention of USB Keyboard and Mouse Emulation\\}
+\title{Captcha-Enabled HID Driver \\ for Prevention of USB Keyboard and Mouse Emulation\\}
 
 \author{Vince Fasburg, Bonnie Reiff, and Josh Thomas\\
 CSE 825: Computer and Network Security\\
@@ -127,7 +127,7 @@ The program installed on the Teensy would not know what the random captcha text 
 \section{Threat Model}
 \label{section:threat}
 
-The type of attack that is explored in this paper employs a very specific set of capabilities, and tends to be subject to certain limitations in functionality. Although the Teensy microcontroller was the primary focus in this paper, there are other models of microcontroller capable of emulating HIDs  \cite{captcha}, and some of them have different properties which may warrant separate consideration. 
+The type of attack that is explored in this paper employs a very specific set of capabilities, and tends to be subject to certain limitations in functionality. Although the Teensy microcontroller was the primary focus in this paper, there are other models of microcontrollers capable of emulating HIDs  \cite{captcha}, and some of them have different properties which may warrant separate consideration. 
 
 The most basic version of the attack considered here is the type of attack for which examples are provided in this paper. These attacks involve using preprogrammed actions of a keyboard and/or mouse that run automatically on the Teensy microcontroller when the device is plugged into a host system's USB port. Although the Teensy microcontroller cannot be programmed to be perceived simultaneously by a host system as both an HID and another type of device such as a flash drive (at least not without significant customization), the proposed solution is meant to be effective against a device that does employ this capability, as long as this solution is run in conjunction with an operating system or setting that does not execute programs on newly found devices without user confirmation.
 
@@ -148,7 +148,7 @@ In the flowchart, physical interactions with the system are represented by circl
 
 \begin{figure}[H]
    \center{\includegraphics[width=1\linewidth]{Pictures/design_flow_thread}}
-   \caption{Flowchart illustrating the actions, programs, and decisions of the CAPTCHA-enabled HID driver}
+   \caption{Flowchart illustrating the actions, programs, and decisions of the captcha-enabled HID driver}
    \label{fig:flowchart}
 \end{figure}
 
@@ -254,7 +254,7 @@ These setup steps are also needed if the script is to be run from a udev rule, w
 
 %------------------------------------------------------------------------- 
 
-\subsection{CAPTCHA GUI}
+\subsection{Captcha GUI}
 \label{section:gui}
 
 In order for the user to validate the USB device, a Graphical User Interface (GUI) was created with a captcha and a method to validate both with the mouse and the keyboard. The GUI was created in Java with the basic components of the Java Swing \cite{kim} library as shown in Figure~\ref{fig:JavaGUI}.
@@ -267,7 +267,7 @@ In order for the user to validate the USB device, a Graphical User Interface (GU
 
 The captcha was generated with a random sequence of six alphanumeric characters in both upper and lower case. The current captcha is non-web based and is generated completely with the use of a Java class. The user can generate a new captcha with the ``Get New Captcha'' button in the event that one of the captchas is unreadable. The background color, foreground color, and font also have the ability to be randomized with a blacklist in place to prevent certain color combinations.
 
-The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with some kind of computer vision. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
+The GUI has been designed to always stay on top of other windows as well as always remain in focus. This prevents a malicious program from trying to open a terminal or closing out of the GUI. In addition, each time the GUI opens, it appears in a randomized location on the screen. This location is bounded to prevent the GUI from opening up partially or fully off of the screen. This prevents an emulation program from pre-programming where the buttons on the GUI will be located then using this information to try to close it or read the captcha with a of computer vision or Optical Character Recognition. The ``x'' to close the GUI has also been disabled so the GUI can only be closed with the correct input of the captcha.
 
 There are two methods to input the captcha text for validation. The first method would be used if a keyboard needed to be validated. The user would simply type the captcha text directly into the blank textbox and then press enter or briefly hover over the ``Validate'' button.
 
@@ -295,7 +295,7 @@ These tests were executed to ensure that the captcha program runs as expected fo
 
 A Teensy (version 3.1) was set to simultaneously emulate a keyboard, mouse, and joystick (all USB-HID devices) and loaded with each of the attacks described above in the ``Teensy Attacks'' section of the paper (Section~\ref{section:teensy}). The Teensy was subsequently plugged into a USB port and the system was observed to see what (if anything) occurred before the captcha program loaded to determine the effectiveness of the captcha-enabled HID driver against realistic USB-HID emulation attacks. Note that all of the Teensy attacks were also tested on a computer with the unmodified usbhid driver and the correct functionality of each attack was verified.
 
-The four keyboard-based attacks, in which the Teensy program attempts to open a terminal using the special key sequence ctrl+alt+t and subsequently execute various malicious commands, were all prevented from causing any harm to the system. However, the testing revealed flaws in the current design of the captcha-enabled HID driver. The most significant issue observed was that the Teensy attacks had the ability to open terminal windows before the captcha program loaded. The attacks are still considered non-malicious due to the focus-grabbing ability of the captcha program, which caused malicious text to be typed into the captcha window as opposed to the terminal. Since the text typed into the captcha window does not match the image to validate, the program interprets the commands as incorrect input and generates a new captcha.
+The four keyboard-based attacks, in which the Teensy program attempts to open a terminal using the special key sequence ctrl+alt+t and subsequently execute various malicious commands, were all prevented from causing any harm to the system. However, the testing revealed flaws in the current design of the captcha-enabled HID driver. The most significant issue observed was that the Teensy attacks had the ability to open terminal windows before the captcha program loaded. The attacks are still unsuccessful in issuing malicious commands due to the focus-grabbing ability of the captcha program, which caused malicious text to be typed into the captcha window as opposed to the terminal. Since the text typed into the captcha window does not match the image to validate, the program interprets the commands as incorrect input and generates a new captcha.
 
 The mouse-based attack, in which the Teensy program opens a terminal without the special character sequence by navigating to the ``Search'' program on the taskbar and searching for the terminal application, also proved to be ineffective against the captcha-enabled driver. In testing, the movement of the mouse towards the upper left-hand corner of the screen towards the ``Search'' application can be observed, but the captcha loaded before the Teensy program could complete the search, resulting in the same situation as in the keyboard-based attacks described above.
 
@@ -343,7 +343,7 @@ The resulting research produced Ubuntu attacks written for the Teensy USB-based 
 
 As this was a proof of concept, in addition to fixing the technical weaknesses explained in Section~\ref{section:weakness}, there are several improvements that can be made in future versions of the driver modification.
 
-\subsection{CAPTCHA Improvements}
+\subsection{Captcha Improvements}
 \label{section:futureworkcaptcha}
 
 As stated in Section~\ref{section:gui}: Captcha GUI, the current captcha is a non-web based random sequence of six alphanumeric characters with randomized background color, foreground color, and font. A more advanced captcha contains characteristics such as letter distortion and strokes through the text, and makes tasks such as segmentation (the ability to separate one letter from another) difficult, especially without understanding the context of the words \cite{captcha}. The addition of such features would help prevent against Optical Character Recognition should this become an issue in HID validation in the future.
@@ -377,7 +377,7 @@ The major project deliverables and testing of the end product were divided as fo
 	\begin{tabular}{ | c | c | }
 		\hline \textbf{Project Contribution} & \textbf{Team Member} \\ \hline
 		Teensy code attacks & Vince Fasburg \\ \hline
-		CAPTCHA GUI & Josh Thomas \\ \hline
+		Captcha GUI & Josh Thomas \\ \hline
 		Driver modification & Bonnie Reiff \\ \hline
 		Bash Shell script & Vince Fasburg \\ \hline
 		Udev rule research & Vince Fasburg \\ \hline
