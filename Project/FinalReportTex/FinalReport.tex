@@ -127,7 +127,7 @@ The program installed on the Teensy would not know what the random captcha text 
 \section{Threat Model}
 \label{section:threat}
 
-The type of attack that is explored in this paper employs a very specific set of capabilities, and tends to be subject to certain limitations in functionality. Although the Teensy microcontroller was the primary focus in this paper, there are other models of microcontroller capable of emulating HIDs  \cite{captcha}, and some of them have different properties which may warrant separate consideration. 
+The type of attack that is explored in this paper employs a very specific set of capabilities, and tends to be subject to certain limitations in functionality. Although the Teensy microcontroller was the primary focus in this paper, there are other models of microcontrollers capable of emulating HIDs  \cite{captcha}, and some of them have different properties which may warrant separate consideration. 
 
 The most basic version of the attack considered here is the type of attack for which examples are provided in this paper. These attacks involve using preprogrammed actions of a keyboard and/or mouse that run automatically on the Teensy microcontroller when the device is plugged into a host system's USB port. Although the Teensy microcontroller cannot be programmed to be perceived simultaneously by a host system as both an HID and another type of device such as a flash drive (at least not without significant customization), the proposed solution is meant to be effective against a device that does employ this capability, as long as this solution is run in conjunction with an operating system or setting that does not execute programs on newly found devices without user confirmation.
 
