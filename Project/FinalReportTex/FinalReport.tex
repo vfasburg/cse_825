@@ -142,7 +142,7 @@ Finally, the types of attacks that are possible depend greatly on the tools that
 \section{Design}
 \label{section:design}
 
-Before providing technical details on all of the individual portions of the captcha-enabled HID driver work, we first present an overview of the interactions between the various portions. The interactions are represented visually in flowchart form in Figure~\ref{fig:flowchart}. The diagram touches on all aspects of Section~\ref{section:technical} other than the teensy attacks, which are considered input to the flowchart.
+Before providing technical details on all of the individual portions of the captcha-enabled HID driver work, we first present an overview of the interactions between the various portions. The interactions are represented visually in a flowchart shown in Figure~\ref{fig:flowchart}. The diagram touches on all aspects of Section~\ref{section:technical} other than the teensy attacks, which are considered input to the flowchart.
 
 In the flowchart, physical interactions with the system are represented by circles, programmatic system actions are represented by rectangles, and conditionals are illustrated as diamonds. In addition, each color represents a different process. When a user plugs in a USB HID such a keyboard, mouse, or joystick (or an emulated USB HID such as the Teensy), the device registration information is passed to the kernel and the appropriate driver is used to serve as the software interface with the hardware. In this case, the ``usbhid" driver handles all of the general device functions. 
 
@@ -152,10 +152,9 @@ In the flowchart, physical interactions with the system are represented by circl
    \label{fig:flowchart}
 \end{figure}
 
-All of the modification to create the captcha-enabled HID driver relates to the separate thread depicted in the diagram, which is created by the call from the driver to run the user-space shell script. Because this is executed in a new process thread, the system does not block on script execution and continues to perform other processes (as shown on the left side of the diagram). The script first disables mouse clicking and all non-alphanumeric keyboard characters other than the shift and enter keys on the keybaord using the X Window System display server. The command to start the captcha program is then executed and the captcha program is set up to hold the system's focus. Together, these two features ensure that until the newly inserted device has been validated to be human-controlled (as opposed to programmatically-controlled), no malicious actions can be executed by any mouse or keyboard connected to the system. 
+All of the modifications to create the captcha-enabled HID driver relates to the separate thread depicted in the diagram, which is created by the call from the driver to run the user-space shell script. Since this is executed in a new process thread, the system does not block on script execution and continues to perform other processes (as shown on the left side of the diagram). The script first disables mouse clicking and all non-alphanumeric keyboard characters other than the shift and enter keys on the keybaord using the X Window System display server. The command to start the captcha program is then executed and the captcha program is set up to hold the system's focus. Together, these two features ensure that until the newly inserted device has been validated to be human-controlled (as opposed to programmatically-controlled), no malicious actions can be executed by any mouse or keyboard connected to the system. 
 
 The script is designed to block on the captcha program line until the user enters a valid response to the captcha prompt, at which point the GUI closes and the process ends, allowing the script to continue. Before exiting the script, due to the fact that the device has been validated, the full keyboard and mouse functionalities are restored.
-
 
 %------------------------------------------------------------------------- 
 
